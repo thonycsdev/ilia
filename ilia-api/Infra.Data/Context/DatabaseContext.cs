@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Services.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Infra.Data.Context
 {
     public class DatabaseContext : DbContext
     {
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public string DbPath { get; }
 
