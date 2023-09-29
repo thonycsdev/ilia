@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Services.DTOs.Request
 {
-    internal class OrderRequest
+    public class OrderRequest
     {
+        public int CustomerId { get; set; }
     }
 }
