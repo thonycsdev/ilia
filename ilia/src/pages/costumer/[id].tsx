@@ -58,6 +58,12 @@ function SingleCostumer() {
 						type="submit"
 						className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
 					>
+						Update Costumer
+					</button>
+					<button
+						onClick={() => router.push("/orderForm")}
+						className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
+					>
 						Create Order
 					</button>
 				</form>
