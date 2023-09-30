@@ -70,5 +70,6 @@ namespace Testes
             Assert.NotNull(result.CreatedAt);
             Assert.NotEqual(DateTime.MinValue, result.CreatedAt);
         }
+
     }
 }

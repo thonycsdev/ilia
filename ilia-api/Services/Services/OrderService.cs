@@ -26,6 +26,7 @@ namespace Services.Services
                 throw new Exception();
 
             var entity = _mapper.Map<Order>(order);
+            entity.CustomerId = order.CustomerId;
             entity.CreatedAt = DateTime.Now;
             await _orderRepository.Create(entity);
             return _mapper.Map<OrderResponse>(entity);

@@ -5,6 +5,8 @@ using Services.Interfaces.Services;
 
 namespace ilia_api.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;

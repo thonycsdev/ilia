@@ -11,20 +11,13 @@ namespace Services.Services
     public class CustomerServices : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly IOrderService _orderService;
+
         private readonly IMapper _mapper;
-        public CustomerServices(ICustomerRepository customerRepository, IMapper mapper, IOrderService orderService)
+        public CustomerServices(ICustomerRepository customerRepository, IMapper mapper)
         {
             _customerRepository = customerRepository;
-            _orderService = orderService;
 
             _mapper = mapper;
-        }
-
-        public async Task<OrderResponse> AddOrderToCustomer(OrderRequest orderRequest)
-        {
-            var order = await _orderService.CreateOrder(orderRequest);
-            return _mapper.Map<OrderResponse>(order);
         }
 
         public async Task<CustomerResponse> CreateCustomer(CustomerRequest customer)
@@ -49,13 +42,13 @@ namespace Services.Services
 
         public async Task<IEnumerable<CustomerResponse>> GetAllCustomers()
         {
-            var results = await _customerRepository.GetAll(null);
+            var results = await _customerRepository.GetAllCustomersWithOrders();
             return _mapper.Map<List<CustomerResponse>>(results);
         }
 
         public async Task<CustomerResponse> GetCustomerById(int id)
         {
-            var result = await _customerRepository.GetSingleOrDefault(x => x.Id == id);
+            var result = await _customerRepository.GetAllSingleCustomerWithOrders(x => x.Id == id);
             return _mapper.Map<CustomerResponse>(result);
         }
 
