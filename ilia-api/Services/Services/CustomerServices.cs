@@ -1,4 +1,8 @@
+using AutoMapper;
+using Services.DTOs.Request;
 using Services.DTOs.Response;
+using Services.Entities;
+using Services.Helpers.Extensions;
 using Services.Interfaces.Repositories;
 using Services.Interfaces.Services;
 
@@ -7,14 +11,29 @@ namespace Services.Services
     public class CustomerServices : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
-        public CustomerServices(ICustomerRepository customerRepository)
+        private readonly IMapper _mapper;
+        public CustomerServices(ICustomerRepository customerRepository, IMapper mapper)
         {
             _customerRepository = customerRepository;
+            _mapper = mapper;
         }
+
+        public async Task<CustomerResponse> CreateCustomer(CustomerRequest customer)
+        {
+            customer.CheckIsCustomerEmailAndNameAreWhiteSpacesOrNull();
+            customer.CheckIsCustomerEmailAndNameAreEmpty();
+
+
+            var entity = _mapper.Map<Customer>(customer);
+            entity.CreatedAt = DateTime.Now;
+            await _customerRepository.Create(entity);
+            return _mapper.Map<CustomerResponse>(entity);
+        }
+
         public async Task<CustomerResponse> GetCustomerById(int id)
         {
             var result = await _customerRepository.GetSingleOrDefault(x => x.Id == id);
-            return new CustomerResponse() { Id = result.Id, CreatedAt = result.CreatedAt, Email = result.Email, Name = result.Name };
+            return _mapper.Map<CustomerResponse>(result);
         }
     }
 }
