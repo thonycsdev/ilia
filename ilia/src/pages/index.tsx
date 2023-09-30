@@ -1,3 +1,9 @@
+import Costumers from "@/Components/Costumers/Costumers";
+
 export default function Home() {
-	return <h1>HelloWord</h1>;
+	return (
+		<>
+			<Costumers />
+		</>
+	);
 }
