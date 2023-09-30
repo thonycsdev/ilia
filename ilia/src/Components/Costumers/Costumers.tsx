@@ -1,8 +1,15 @@
-import { constantsApi } from "@/constants/constantsApi";
-import React from "react";
+import { CostumerContext } from "@/contexts/costumerContext";
+import React, { useContext } from "react";
 
 function Costumers() {
-	return <div>{constantsApi.ApiKey}</div>;
+	const { costumers } = useContext(CostumerContext);
+	return (
+		<div>
+			{costumers.map((costumer) => (
+				<h1>{costumer.name}</h1>
+			))}
+		</div>
+	);
 }
 
 export default Costumers;
