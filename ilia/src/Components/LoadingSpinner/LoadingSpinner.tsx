@@ -1,0 +1,18 @@
+import React from "react";
+import { RotatingLines } from "react-loader-spinner";
+
+function LoadingSpinner() {
+	return (
+		<div className="w-full flex justify-center items-center">
+			<RotatingLines
+				strokeColor="grey"
+				strokeWidth="5"
+				animationDuration="0.75"
+				width="25"
+				visible={true}
+			/>
+		</div>
+	);
+}
+
+export default LoadingSpinner;
