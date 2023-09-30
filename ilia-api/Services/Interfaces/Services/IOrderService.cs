@@ -11,5 +11,8 @@ namespace Services.Interfaces.Services
     {
         Task<OrderResponse> GetOrderById(int id);
         Task<OrderResponse> CreateOrder(OrderRequest customer);
+        Task<IEnumerable<OrderResponse>> GetAllOrders();
+        Task DeleteOrder(int id);
+        Task<OrderResponse> UpdateOrder(OrderRequest orderRequest, int id);
     }
 }

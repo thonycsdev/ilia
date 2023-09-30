@@ -2,6 +2,6 @@
 {
     public class OrderResponse : BaseResponse
     {
-        public CustomerResponse Customer { get; set; }
+        public int CustomerId { get; set; }
     }
 }

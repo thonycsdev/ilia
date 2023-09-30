@@ -35,12 +35,11 @@ namespace Testes
             var value = fixture.Create<int>();
             var customer = fixture.Create<Customer>();
             var moqRepo =
-            customerRepository.Setup(x => x.GetSingleOrDefault(x => x.Id == value)).ReturnsAsync(customer);
+            customerRepository.Setup(x => x.GetAllSingleCustomerWithOrders(x => x.Id == value)).ReturnsAsync(customer);
 
 
             var service = new CustomerServices(customerRepository.Object, mapper);
             var result = await service.GetCustomerById(value);
-
 
             Assert.NotNull(result);
 

@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Services.Entities
 {
     public class Customer : BaseEntity
