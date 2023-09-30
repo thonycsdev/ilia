@@ -14,7 +14,7 @@ function NavBar(props: NavBarProps) {
 					<Link href={"/"}>
 						<li>Home</li>
 					</Link>
-					<Link href={"/costumersForm"}>
+					<Link href={"/costumer/createCostumer"}>
 						<li>Add Customers</li>
 					</Link>
 					<Link href={"/orderForm"}>
