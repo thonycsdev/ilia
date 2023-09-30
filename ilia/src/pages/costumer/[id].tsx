@@ -1,4 +1,4 @@
-import CostumersForm from "@/components/Costumers/CostumersForm";
+import CostumerProfile from "@/components/Costumers/CostumerProfile";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { Costumer } from "@/models/costumer";
 import { useRouter } from "next/router";
@@ -18,7 +18,7 @@ function SingleCostumer() {
 		handleFetchCostumer();
 	}, [router]);
 	if (!costumer) return <h1>Loading...</h1>;
-	return <CostumersForm />;
+	return <CostumerProfile costumer={costumer} />;
 }
 
 export default SingleCostumer;
