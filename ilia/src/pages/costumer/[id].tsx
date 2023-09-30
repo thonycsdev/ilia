@@ -18,7 +18,7 @@ function SingleCostumer() {
 		handleFetchCostumer();
 	}, [router]);
 	if (!costumer) return <h1>Loading...</h1>;
-	return <CostumersForm costumer={costumer} />;
+	return <CostumersForm />;
 }
 
 export default SingleCostumer;

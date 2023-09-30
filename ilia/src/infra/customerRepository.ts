@@ -16,4 +16,8 @@ export default class CostumerRepository {
 		});
 		return response.then((result) => result.data);
 	}
+
+	createCostumer(costumer: Costumer) {
+		axios.post(this.ApiKey + "/Customer", costumer);
+	}
 }

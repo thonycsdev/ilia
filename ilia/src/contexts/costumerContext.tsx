@@ -32,7 +32,10 @@ export const CostumerContextProvider = (
 			.getAllCostumers()
 			.then((result) => setCostumers(result.data));
 	};
-	const createCostumer = () => {};
+	const createCostumer = (costumer: Costumer) => {
+		costumerRepository.createCostumer(costumer);
+		getCostumers();
+	};
 	const deleteCostumer = () => {};
 	const updateCostumer = () => {};
 	const getSingleCostumer = (id: number) => {
