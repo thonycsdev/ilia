@@ -1,9 +1,6 @@
 using Services.DTOs.Request;
 using Services.DTOs.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Services.Interfaces.Services
 {
@@ -11,5 +8,8 @@ namespace Services.Interfaces.Services
     {
         Task<CustomerResponse> GetCustomerById(int id);
         Task<CustomerResponse> CreateCustomer(CustomerRequest customer);
+        Task<IEnumerable<CustomerResponse>> GetAllCustomers();
+        Task DeleteCustomer(int id);
+        Task<CustomerResponse> UpdateCustomer(CustomerRequest customerRequest, int id);
     }
 }

@@ -31,9 +31,33 @@ namespace Services.Services
             return _mapper.Map<OrderResponse>(entity);
         }
 
-        public Task<OrderResponse> GetOrderById(int id)
+        public async Task DeleteOrder(int id)
         {
-            throw new NotImplementedException();
+            var entityToDelete = await _orderRepository.GetSingleOrDefault(x => x.Id == id);
+
+            await _orderRepository.Delete(entityToDelete);
+            return;
+        }
+
+        public async Task<IEnumerable<OrderResponse>> GetAllOrders()
+        {
+            var results = await _orderRepository.GetAll(null);
+            return _mapper.Map<List<OrderResponse>>(results);
+        }
+
+        public async Task<OrderResponse> GetOrderById(int id)
+        {
+            var results = await _orderRepository.GetSingleOrDefault(x => x.Id == id);
+            return _mapper.Map<OrderResponse>(results);
+        }
+
+        public async Task<OrderResponse> UpdateOrder(OrderRequest orderRequest, int id)
+        {
+            var entityToUpdate = await _orderRepository.GetSingleOrDefault(x => x.Id == id);
+            entityToUpdate.CustomerId = orderRequest.CustomerId;
+            await _orderRepository.Update(entityToUpdate);
+
+            return _mapper.Map<OrderResponse>(entityToUpdate);
         }
     }
 }
