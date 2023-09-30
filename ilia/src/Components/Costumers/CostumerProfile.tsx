@@ -1,3 +1,4 @@
+import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import { Costumer } from "@/models/costumer";
 import React from "react";
 
@@ -21,12 +22,15 @@ function CostumerProfile(props: CostumerProfileProps) {
 				</div>
 				<div className="appearance-none flex w-2/4 gap-7 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
 					<div className="font-bold">Created At:</div>
-					{costumer.createdAt}
+					{formatDateToBrazilFormat(new Date(costumer.createdAt))}
 				</div>
 				<div className="p-8 font-bold text-2xl">Orders</div>
 				<div className="w-1/2 mx-auto flex justify-center flex-wrap gap-4">
 					{costumer.orders.map((order) => (
-						<div className="appearance-none flex w-2/4 gap-7 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+						<div
+							key={order.id}
+							className="appearance-none flex w-2/4 gap-7 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+						>
 							<div className="font-bold">Order Id:</div>
 							{order.id}
 						</div>

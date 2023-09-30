@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 
 function Toast() {
-	function successToast() {
-		toast.success("Costumer created!", {
+	function successToast(text: string) {
+		toast.success(text, {
 			position: "top-center",
 			autoClose: 5000,
 			hideProgressBar: false,

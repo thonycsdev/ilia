@@ -6,7 +6,7 @@ export type Costumer = {
 	orders: Order[];
 };
 
-type Order = {
+export type Order = {
 	id: number;
 	createdAt: string;
 	customerId: number;

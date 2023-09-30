@@ -24,7 +24,7 @@ function CostumersForm() {
 		setTimeout(() => {
 			createCostumer(payload);
 			setIsLoading(false);
-			successToast();
+			successToast("Costumer Created");
 		}, 500);
 	};
 
@@ -85,14 +85,6 @@ function CostumersForm() {
 							Create Order
 						</button>
 					</form>
-					<div className="w-1/2 flex flex-col items-center">
-						<label className=" text-gray-700 font-bold mb-2">Orders</label>
-						{initialValue.orders.map((order) => (
-							<div className="bg-gray-200 text-gray-700 border rounded w-1/2 py-3 px-4 mb-3 ">
-								{order.id}
-							</div>
-						))}
-					</div>
 				</div>
 			</div>
 		</>
