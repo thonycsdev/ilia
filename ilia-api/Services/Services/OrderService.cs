@@ -23,13 +23,12 @@ namespace Services.Services
         public async Task<OrderResponse> CreateOrder(OrderRequest order)
         {
             if (order.CustomerId <= 0)
-            {
                 throw new Exception();
-            }
+
             var entity = _mapper.Map<Order>(order);
             entity.CreatedAt = DateTime.Now;
-            var result = await _orderRepository.Create(entity);
-            return _mapper.Map<OrderResponse>(result);
+            await _orderRepository.Create(entity);
+            return _mapper.Map<OrderResponse>(entity);
         }
 
         public Task<OrderResponse> GetOrderById(int id)

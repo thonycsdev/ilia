@@ -57,5 +57,18 @@ namespace Testes
 
             Assert.NotNull(result);
         }
+        [Fact]
+        public async void Should_Have_A_Valid_DateTime()
+        {
+
+            var request = fixture.Create<OrderRequest>();
+            var entity = mapper.Map<Order>(request);
+            mockRepository.Setup(x => x.Create(entity)).ReturnsAsync(entity);
+            var service = new OrderService(mockRepository.Object, mapper);
+
+            var result = await service.CreateOrder(request);
+            Assert.NotNull(result.CreatedAt);
+            Assert.NotEqual(DateTime.MinValue, result.CreatedAt);
+        }
     }
 }
