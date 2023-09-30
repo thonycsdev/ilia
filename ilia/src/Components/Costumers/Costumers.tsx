@@ -1,12 +1,13 @@
 import { CostumerContext } from "@/contexts/costumerContext";
 import React, { useContext } from "react";
+import Card from "../Cards/Card";
 
 function Costumers() {
 	const { costumers } = useContext(CostumerContext);
 	return (
-		<div>
+		<div className="w-screen h-screen flex justify-center pt-24 gap-8">
 			{costumers.map((costumer) => (
-				<h1>{costumer.name}</h1>
+				<Card costumer={costumer} key={costumer.id} />
 			))}
 		</div>
 	);
