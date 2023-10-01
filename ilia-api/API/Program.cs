@@ -1,12 +1,8 @@
 using System.Text.Json.Serialization;
+using ilia_api;
 using Infra.Data.Context;
-using Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Services.AutoMapper;
-using Services.Interfaces.Repositories;
-using Services.Interfaces.Services;
-using Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +19,10 @@ builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ICustomerService, CustomerServices>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-
+builder.Host.ConfigureServices(service =>
+{
+    DependencyInjectionConfig.ConfigureServices(service);
+});
 
 builder.Services.AddCors(options =>
 {
