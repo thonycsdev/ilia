@@ -21,7 +21,7 @@ function CostumerProfile(props: CostumerProfileProps) {
 
 	const { data } = useQuery<Costumer>({
 		queryFn: () => getSingleCostumer(costumer.id),
-		queryKey: ["costumer"],
+		queryKey: ["singleCostumer"],
 	});
 	if (!data?.orders || !data) return null;
 

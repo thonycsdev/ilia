@@ -60,8 +60,9 @@ export const CostumerContextProvider = (
 
 	const updateMutation = useMutation({
 		mutationFn: updateCostumer as MutationFunction,
-		mutationKey: ["costumer"],
+		mutationKey: ["singleCostumer"],
 		onSuccess: () => {
+			queryClient.invalidateQueries(["singleCostumer"]);
 			queryClient.invalidateQueries(["costumer"]);
 		},
 	});

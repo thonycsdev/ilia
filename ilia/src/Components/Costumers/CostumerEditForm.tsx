@@ -18,6 +18,7 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {} as Costumer,
@@ -33,6 +34,7 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 			updateCostumer({ ...payload, id: costumer.id });
 			successToast("Customer Updated Successfully");
 			setTimeout(() => {
+				reset({} as Costumer);
 				onClose();
 			}, 500);
 		} catch (error) {
