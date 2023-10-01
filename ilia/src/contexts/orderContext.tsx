@@ -1,4 +1,4 @@
-import OrderRepository from "@/infra/orderRepository";
+import { orderFactory } from "@/factories/orderFactory";
 import { Order } from "@/models/costumer";
 import { ReactNode, useState, createContext, useEffect } from "react";
 
@@ -20,22 +20,22 @@ type OrderContextProviderProps = {
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
 	const [orders, setOrders] = useState<Order[]>([]);
-	const orderRepository = new OrderRepository();
+	const { orderService } = orderFactory();
 	useEffect(() => {
 		getOrders();
 	}, []);
 
 	const getOrders = () => {
-		orderRepository.getAllOrders().then((result) => setOrders(result.data));
+		orderService.getOrders().then((result) => setOrders(result.data));
 	};
 	const createOrder = (Order: Order) => {
-		orderRepository.createOrder(Order);
+		orderService.createOrder(Order);
 		getOrders();
 	};
 	const deleteOrder = () => {};
 	const updateOrder = () => {};
 	const getSingleOrder = (id: number) => {
-		const response = orderRepository.GetSingleOrder(id);
+		const response = orderService.getSingleOrder(id);
 		return response;
 	};
 
