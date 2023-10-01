@@ -20,7 +20,7 @@ function NavBar(props: NavBarProps) {
 					<Link href={"/order/createOrder"}>
 						<li>Create Order</li>
 					</Link>
-					<Link href={"/orders"}>
+					<Link href={"/order"}>
 						<li>Orders</li>
 					</Link>
 					<Link href={"/products"}>

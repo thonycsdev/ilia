@@ -79,7 +79,7 @@ function CostumersForm() {
 							{isLoading ? <LoadingSpinner /> : "Create Customer"}
 						</button>
 						<button
-							onClick={() => router.push("/orderForm")}
+							onClick={() => router.push("/order/createOrder")}
 							className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
 						>
 							Create Order
