@@ -6,8 +6,6 @@ import {
 	ModalHeader,
 	ModalCloseButton,
 	ModalBody,
-	ModalFooter,
-	Button,
 } from "@chakra-ui/react";
 import CostumerEditForm from "./CostumerEditForm";
 
@@ -19,24 +17,17 @@ type CostumerEditModalProps = {
 export function CostumerEditModal(props: CostumerEditModalProps) {
 	const { isOpen, onClose, costumer } = props;
 	return (
-		<>
-			<Modal isOpen={isOpen} onClose={onClose}>
+		<div className="w-full">
+			<Modal isOpen={isOpen} onClose={onClose} isCentered>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader>Modal Title</ModalHeader>
 					<ModalCloseButton />
-					<ModalBody>
+					<ModalBody width={"full"} height={"full"}>
 						<CostumerEditForm costumer={costumer} />
 					</ModalBody>
-
-					<ModalFooter>
-						<Button colorScheme="blue" mr={3} onClick={onClose}>
-							Close
-						</Button>
-						<Button variant="ghost">Secondary Action</Button>
-					</ModalFooter>
 				</ModalContent>
 			</Modal>
-		</>
+		</div>
 	);
 }
