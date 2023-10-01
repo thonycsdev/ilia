@@ -4,11 +4,11 @@ import axios from "axios";
 
 export default function orderRepository() {
 	function createOrder(order: Order) {
-		axios.post(constantsApi.ApiKey + "/Order", order);
+		return axios.post(constantsApi.ApiKey + "/Order", order);
 	}
 	function getAllOrders() {
 		const response = axios.get(constantsApi.ApiKey + "/getAllOrders");
-		return response;
+		return response.then((data) => data.data);
 	}
 
 	function getSingleOrder(orderId: number) {

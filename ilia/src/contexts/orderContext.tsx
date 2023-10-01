@@ -1,7 +1,8 @@
 import { Order } from "@/models/costumer";
 import orderRepository from "@/repositories/orderRepository";
-import { ReactNode, useState, createContext, useEffect } from "react";
-import { useQuery, useMutation, MutationFunction } from "react-query";
+import { ReactNode, createContext } from "react";
+import { useQuery, MutationFunction } from "react-query";
+import { createMutation } from "./mutation/mutation";
 
 type OrderContextProps = {
 	orders: Order[];
@@ -21,20 +22,13 @@ type OrderContextProviderProps = {
 
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
-	const [orders, setOrders] = useState<Order[]>([]);
 	const { createOrder, getAllOrders, getSingleOrder } = orderRepository();
-	const { data } = useQuery({ queryFn: getAllOrders, queryKey: ["ordersKey"] });
-	const { mutate, isLoading } = useMutation({
-		mutationFn: createOrder as MutationFunction,
-		mutationKey: ["orderKey"],
+	const { data, isSuccess } = useQuery({
+		queryFn: getAllOrders,
+		queryKey: ["ordersKey"],
 	});
+	const { mutate } = createMutation(createOrder as MutationFunction, "orders");
 
-	useEffect(() => {
-		console.log(data);
-		if (data) {
-			setOrders(data.data);
-		}
-	}, []);
 	const addOrder = (order: Order) => {
 		mutate(order);
 	};
@@ -43,13 +37,13 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	return (
 		<OrderContext.Provider
 			value={{
-				orders,
+				orders: data,
 				getSingleOrder,
 				getAllOrders,
 				addOrder,
 				deleteOrder,
 				updateOrder,
-				isLoading,
+				isLoading: isSuccess,
 			}}
 		>
 			{children}
