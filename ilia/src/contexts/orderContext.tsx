@@ -1,6 +1,7 @@
 import { Order } from "@/models/costumer";
 import orderRepository from "@/repositories/orderRepository";
 import { ReactNode, useState, createContext, useEffect } from "react";
+import { useQuery } from "react-query";
 
 type OrderContextProps = {
 	orders: Order[];
@@ -21,8 +22,12 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
 	const [orders, setOrders] = useState<Order[]>([]);
 	const { createOrder, getAllOrders, getSingleOrder } = orderRepository();
+	const { data } = useQuery({ queryFn: getAllOrders, queryKey: ["ordersKey"] });
 	useEffect(() => {
-		console.log(setOrders);
+		console.log(data);
+		if (data) {
+			setOrders(data.data);
+		}
 	}, []);
 	const deleteOrder = () => {};
 	const updateOrder = () => {};
