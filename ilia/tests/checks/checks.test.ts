@@ -1,6 +1,18 @@
-import { Checks } from "@/checks/checks";
+import { ChecksCostumerInputs } from "@/checks/checks";
+import { Costumer } from "@/models/costumer";
 
 describe("Checks tests", () => {
+	let costumer: Costumer;
+
+	beforeEach(() => {
+		costumer = {
+			id: 0,
+			createdAt: "",
+			name: "",
+			email: "",
+			orders: [],
+		};
+	});
 	const emailTestCases = [
 		{ input: "invalidExample.com", expected: true },
 		{ input: "invalid-email", expected: false },
@@ -25,21 +37,24 @@ describe("Checks tests", () => {
 
 	emailTestCases.forEach(({ input }) => {
 		it(`should throw an error when a email is not valid`, () => {
-			const check = new Checks().createCheck(input);
+			costumer.email = input;
+			const check = new ChecksCostumerInputs().createCheck(costumer);
 			expect(() => check.checkInputEmail()).toThrow();
 		});
 	});
 
 	invalidNamesTestCases.forEach(({ input }) => {
 		it(`The name ${input} should throw `, () => {
-			const check = new Checks().createCheck(input);
+			costumer.name = input;
+			const check = new ChecksCostumerInputs().createCheck(costumer);
 			expect(() => check.checkInputName()).toThrow();
 		});
 	});
 
 	validNamesTestCases.forEach(({ input }) => {
 		it(`The name ${input} should pass`, () => {
-			const check = new Checks().createCheck(input);
+			costumer.name = input;
+			const check = new ChecksCostumerInputs().createCheck(costumer);
 			expect(() => check.checkInputName()).not.toThrow();
 		});
 	});

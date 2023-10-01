@@ -3,7 +3,6 @@ import { Costumer } from "@/models/costumer";
 
 export default class CostumerService {
 	private readonly costumerRepository: CostumerRepository;
-
 	constructor(costumerRepository: CostumerRepository) {
 		this.costumerRepository = costumerRepository;
 	}

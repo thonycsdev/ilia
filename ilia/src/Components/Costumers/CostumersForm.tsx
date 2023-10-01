@@ -1,11 +1,11 @@
 import { CostumerContext } from "@/contexts/costumerContext";
 import { Costumer } from "@/models/costumer";
-import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Toast from "../Toast/Toast";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createCostumerSchema } from "@/schemas/costumerSchema";
 const initialValue: Costumer = {
 	id: 0,
 	createdAt: "",
@@ -13,11 +13,18 @@ const initialValue: Costumer = {
 	email: "",
 	orders: [],
 };
+
 function CostumersForm() {
-	const { register, handleSubmit } = useForm({ defaultValues: initialValue });
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm({
+		defaultValues: initialValue,
+		resolver: zodResolver(createCostumerSchema),
+	});
 	const [isLoading, setIsLoading] = useState(false);
 	const { successToast } = Toast();
-	const router = useRouter();
 	const { createCostumer } = useContext(CostumerContext);
 	const handleSubmitForm = async (payload: Costumer) => {
 		setIsLoading(true);
@@ -44,21 +51,23 @@ function CostumersForm() {
 								className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 								id="grid-first-name"
 								type="text"
-								{...register("name", { required: "This is required" })}
+								{...register("name")}
 								defaultValue={initialValue.name}
 							/>
+							{errors.name && <span className="">{errors.name.message}</span>}
 						</div>
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 font-bold mb-2">
 								Costumer Email
 							</label>
 							<input
-								{...register("email", { required: "This is required" })}
+								{...register("email")}
 								className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 								id="grid-first-name"
 								type="text"
 								defaultValue={initialValue.email}
 							/>
+							{errors.email && <span className="">{errors.email.message}</span>}
 						</div>
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 font-bold mb-2">
@@ -71,18 +80,15 @@ function CostumersForm() {
 								type="date"
 								defaultValue={initialValue.createdAt}
 							/>
+							{errors.createdAt && (
+								<span className="">{errors.createdAt.message}</span>
+							)}
 						</div>
 						<button
 							type="submit"
 							className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
 						>
 							{isLoading ? <LoadingSpinner /> : "Create Customer"}
-						</button>
-						<button
-							onClick={() => router.push("/order/createOrder")}
-							className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
-						>
-							Create Order
 						</button>
 					</form>
 				</div>
