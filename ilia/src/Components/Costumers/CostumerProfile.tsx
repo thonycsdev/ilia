@@ -42,6 +42,8 @@ function CostumerProfile(props: CostumerProfileProps) {
 						>
 							<div className="font-bold">Order Id:</div>
 							{order.id}
+							<div className="font-bold">Product Id:</div>
+							{order.productId}
 						</div>
 					))}
 				</div>

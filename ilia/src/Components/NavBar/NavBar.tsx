@@ -15,13 +15,16 @@ function NavBar(props: NavBarProps) {
 						<li>Home</li>
 					</Link>
 					<Link href={"/costumer/createCostumer"}>
-						<li>Add Customers</li>
+						<li>Create Costumer</li>
 					</Link>
 					<Link href={"/order/createOrder"}>
-						<li>Add Order</li>
+						<li>Create Order</li>
 					</Link>
 					<Link href={"/orders"}>
 						<li>Orders</li>
+					</Link>
+					<Link href={"/products"}>
+						<li>Products Available</li>
 					</Link>
 				</ul>
 			</div>

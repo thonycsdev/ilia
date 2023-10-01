@@ -5,16 +5,19 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Toast from "../Toast/Toast";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { OrderContext } from "@/contexts/orderContext";
+import { ProductContext } from "@/contexts/productContext";
 
 const initialValue: Order = {
 	id: 0,
 	createdAt: "",
 	customerId: 0,
+	productId: 0,
 };
 
 function OrdersForm() {
 	const { register, handleSubmit } = useForm({ defaultValues: initialValue });
 	const { costumers } = useContext(CostumerContext);
+	const { products } = useContext(ProductContext);
 	const [isLoading, setIsLoading] = useState(false);
 	const { successToast } = Toast();
 	const { createOrder } = useContext(OrderContext);
@@ -46,6 +49,20 @@ function OrdersForm() {
 								{costumers.map((customer) => (
 									<option key={customer.id} value={customer.id}>
 										{customer.name}
+									</option>
+								))}
+							</select>
+							<label className="block tracking-wide text-gray-700 font-bold mb-2">
+								Product
+							</label>
+							<select
+								className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+								id="grid-first-name"
+								{...register("productId", { required: "This is required" })}
+							>
+								{products.map((p) => (
+									<option key={p.id} value={p.id}>
+										{p.title}
 									</option>
 								))}
 							</select>
