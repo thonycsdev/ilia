@@ -20,4 +20,7 @@ export default class CostumerRepository {
 	createCostumer(costumer: Costumer) {
 		axios.post(this.ApiKey + "/Customer", costumer);
 	}
+	deleteCostumer(id: number) {
+		axios.delete(this.ApiKey + "/Customer", { params: { id: id } });
+	}
 }

@@ -16,11 +16,10 @@ function Card(props: CardProps) {
 				<div>Costumer name: {costumer.name}</div>
 				<div>Costumer email: {costumer.email}</div>
 				<div>Created at: {formatedDate}</div>
-				<Link href={`/costumer/${costumer.id}`}>
-					<div className="font-bold text-blue-500 hover:text-blue-400">
-						See more...
-					</div>
-				</Link>
+
+				<div className="font-bold text-blue-500 hover:text-blue-400">
+					See more...
+				</div>
 			</div>
 		</Link>
 	);

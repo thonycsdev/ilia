@@ -1,6 +1,8 @@
 import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import { Costumer } from "@/models/costumer";
-import React from "react";
+import React, { useContext, useState } from "react";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { CostumerContext } from "@/contexts/costumerContext";
 
 type CostumerProfileProps = {
 	costumer: Costumer;
@@ -8,6 +10,13 @@ type CostumerProfileProps = {
 
 function CostumerProfile(props: CostumerProfileProps) {
 	const { costumer } = props;
+	const [isLoading, setIsLoading] = useState(false);
+	const { deleteCostumer } = useContext(CostumerContext);
+	const handleOnClickDelete = () => {
+		setIsLoading(true);
+		deleteCostumer(costumer.id);
+		setIsLoading(false);
+	};
 	return (
 		<div className="w-screen h-screen flex justify-center items-center pb-20">
 			<div className="w-4/6 h-3/4 flex flex-col items-center bg-slate-100 rounded-lg shadow-lg p-4">
@@ -36,6 +45,12 @@ function CostumerProfile(props: CostumerProfileProps) {
 						</div>
 					))}
 				</div>
+				<button
+					className="ml-auto mt-auto w-40 h-10 rounded-lg mx-auto transform duration-100 bg-gray-200 hover:scale-105 hover:bg-gray-200"
+					onClick={handleOnClickDelete}
+				>
+					{isLoading ? <LoadingSpinner /> : "Delete"}
+				</button>
 			</div>
 		</div>
 	);

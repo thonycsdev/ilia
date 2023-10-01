@@ -22,7 +22,6 @@ function OrdersForm() {
 		setIsLoading(true);
 		setTimeout(() => {
 			createOrder(payload);
-			console.log(payload);
 			setIsLoading(false);
 			successToast("Order created!");
 		}, 500);
