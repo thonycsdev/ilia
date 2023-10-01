@@ -1,18 +1,20 @@
 import { Costumer } from "@/models/costumer";
 import { createCostumerSchema } from "@/schemas/costumerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import ErrorSpan from "../ErrosSpan/ErrorSpan";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { CostumerContext } from "@/contexts/costumerContext";
+import Toast from "../Toast/Toast";
 
 type CostumerEditFormProps = {
 	costumer: Costumer;
+	onClose: () => void;
 };
 
 export function CostumerEditForm(props: CostumerEditFormProps) {
-	const { costumer } = props;
+	const { costumer, onClose } = props;
 	const {
 		register,
 		handleSubmit,
@@ -23,8 +25,21 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 	});
 
 	const { updateCostumer } = useContext(CostumerContext);
+	const [isLoading, setIsLoading] = useState(false);
+	const { successToast } = Toast();
 	const handleSubmitForm = async (payload: Costumer) => {
-		updateCostumer({ ...payload, id: costumer.id });
+		try {
+			setIsLoading(true);
+			updateCostumer({ ...payload, id: costumer.id });
+			successToast("Customer Updated Successfully");
+			setTimeout(() => {
+				onClose();
+			}, 500);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 	return (
 		<div className="w-full h-96 flex justify-center items-center">
@@ -77,7 +92,7 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 						className="w-40 h-10 rounded-lg transform duration-100 bg-gray-200 hover:scale-105 hover:bg-gray-200"
 						type="submit"
 					>
-						{costumer ? <LoadingSpinner /> : "Update"}
+						{isLoading ? <LoadingSpinner /> : "Update"}
 					</button>
 				</form>
 			</div>
