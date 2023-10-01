@@ -27,7 +27,10 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 		queryFn: getAllOrders,
 		queryKey: ["ordersKey"],
 	});
-	const { mutate } = createMutation(createOrder as MutationFunction, "orders");
+	const { mutate } = createMutation(
+		createOrder as MutationFunction,
+		"ordersKey"
+	);
 
 	const addOrder = (order: Order) => {
 		mutate(order);

@@ -6,7 +6,7 @@ export function createMutation(func: MutationFunction, queryKey: string) {
 		mutationFn: func,
 		mutationKey: [`${queryKey}`],
 		onSuccess: () => {
-			queryClient.invalidateQueries(["costumer"]);
+			queryClient.invalidateQueries([`${queryKey}`]);
 		},
 	});
 	return mutation;
