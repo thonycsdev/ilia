@@ -6,6 +6,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Toast from "../Toast/Toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createCostumerSchema } from "@/schemas/costumerSchema";
+import ErrorSpan from "../ErrosSpan/ErrorSpan";
 const initialValue: Costumer = {
 	id: 0,
 	createdAt: "",
@@ -54,7 +55,7 @@ function CostumersForm() {
 								{...register("name")}
 								defaultValue={initialValue.name}
 							/>
-							{errors.name && <span className="">{errors.name.message}</span>}
+							{errors.name && <ErrorSpan message={errors.name.message} />}
 						</div>
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 font-bold mb-2">
@@ -67,7 +68,7 @@ function CostumersForm() {
 								type="text"
 								defaultValue={initialValue.email}
 							/>
-							{errors.email && <span className="">{errors.email.message}</span>}
+							{errors.email && <ErrorSpan message={errors.email.message} />}
 						</div>
 						<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 							<label className="block tracking-wide text-gray-700 font-bold mb-2">
@@ -81,7 +82,7 @@ function CostumersForm() {
 								defaultValue={initialValue.createdAt}
 							/>
 							{errors.createdAt && (
-								<span className="">{errors.createdAt.message}</span>
+								<ErrorSpan message={errors.createdAt.message} />
 							)}
 						</div>
 						<button
