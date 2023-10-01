@@ -17,10 +17,12 @@ export default function costumerRepository() {
 	}
 
 	function createCostumer(costumer: Costumer) {
-		axios.post(constantsApi.ApiKey + "/Customer", costumer);
+		return axios.post(constantsApi.ApiKey + "/Customer", costumer);
 	}
 	function deleteCostumer(id: number) {
-		axios.delete(constantsApi.ApiKey + "/Customer", { params: { id: id } });
+		return axios.delete(constantsApi.ApiKey + "/Customer", {
+			params: { id: id },
+		});
 	}
 
 	return { getAllCostumers, getSingleCostumer, createCostumer, deleteCostumer };

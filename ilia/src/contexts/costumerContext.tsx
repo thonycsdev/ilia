@@ -1,7 +1,12 @@
 import costumerRepository from "@/repositories/customerRepository";
 import { Costumer } from "@/models/costumer";
-import { ReactNode, useState, createContext, useEffect } from "react";
-import { useQuery } from "react-query";
+import { ReactNode, createContext } from "react";
+import {
+	MutationFunction,
+	useMutation,
+	useQuery,
+	useQueryClient,
+} from "react-query";
 
 type CostumerContextProps = {
 	costumers: Costumer[];
@@ -11,6 +16,9 @@ type CostumerContextProps = {
 	createCostumer: (costumer: Costumer) => void;
 	isLoading: boolean;
 };
+// const handlePost(costumer: Costumer) => {
+
+// }
 
 export const CostumerContext = createContext({} as CostumerContextProps);
 
@@ -23,25 +31,54 @@ export const CostumerContextProvider = (
 ) => {
 	const { createCostumer, deleteCostumer, getAllCostumers, getSingleCostumer } =
 		costumerRepository();
+	const queryClient = useQueryClient();
 	const { data, isSuccess } = useQuery({
 		queryFn: getAllCostumers,
-		queryKey: ["costumerKey"],
+		queryKey: ["costumer"],
 	});
-	const { children } = props;
-	const [costumers, setCostumers] = useState<Costumer[]>([]);
-	useEffect(() => {
-		if (data) {
-			setCostumers(data);
+
+	const createMutation = useMutation({
+		mutationFn: createCostumer as MutationFunction,
+		mutationKey: ["costumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
+	const deleteMutation = useMutation({
+		mutationFn: deleteCostumer as MutationFunction,
+		mutationKey: ["costumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
+	const handleCreateCustomer = async (costumer: Costumer) => {
+		try {
+			await createMutation.mutate(costumer);
+		} catch (error) {
+			console.error("Mutation failed with error:", error);
 		}
-	}, [data]);
+	};
+
+	const handleDeleteCustomer = async (id: number) => {
+		try {
+			await deleteMutation.mutate(id);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const { children } = props;
+
 	function updateCostumer() {}
 	return (
 		<CostumerContext.Provider
 			value={{
-				costumers,
+				costumers: data,
 				getSingleCostumer,
-				createCostumer,
-				deleteCostumer,
+				createCostumer: handleCreateCustomer,
+				deleteCostumer: handleDeleteCustomer,
 				updateCostumer,
 				isLoading: isSuccess,
 			}}
