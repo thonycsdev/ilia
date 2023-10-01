@@ -11,7 +11,7 @@ export default class CostumerService {
 		return this.costumerRepository.getAllCostumers().then((r) => r.data);
 	}
 
-	createCostumers(costumer: Costumer) {
+	createCostumer(costumer: Costumer) {
 		this.costumerRepository.createCostumer(costumer);
 	}
 	deleteCostumer(id: number) {

@@ -1,4 +1,4 @@
-import CostumerRepository from "@/infra/customerRepository";
+import { costumerFactory } from "@/factories/costumerFactory";
 import { Costumer } from "@/models/costumer";
 import { ReactNode, useState, createContext, useEffect } from "react";
 
@@ -22,25 +22,25 @@ export const CostumerContextProvider = (
 ) => {
 	const { children } = props;
 	const [costumers, setCostumers] = useState<Costumer[]>([]);
-	const costumerRepository = new CostumerRepository();
+	const { costumerService } = costumerFactory();
 	useEffect(() => {
-		getCostumers().then((result) => setCostumers(result.data));
-	}, [costumers]);
+		getCostumers().then((result) => setCostumers(result));
+	}, []);
 
 	const getCostumers = () => {
-		return costumerRepository.getAllCostumers();
+		return costumerService.getCostumers();
 	};
 	const createCostumer = (costumer: Costumer) => {
-		costumerRepository.createCostumer(costumer);
+		costumerService.createCostumer(costumer);
 		setCostumers((old) => [...old, costumer]);
 	};
 	const deleteCostumer = (id: number) => {
-		costumerRepository.deleteCostumer(id);
+		costumerService.deleteCostumer(id);
 		setCostumers((old) => old.filter((x) => x.id !== id));
 	};
 	const updateCostumer = () => {};
 	const getSingleCostumer = (id: number) => {
-		const response = costumerRepository.getSingleCostumer(id);
+		const response = costumerService.getSingleCostumer(id);
 		return response;
 	};
 
