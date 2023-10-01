@@ -1,10 +1,10 @@
-import { orderFactory } from "@/factories/orderFactory";
 import { Order } from "@/models/costumer";
+import orderRepository from "@/repositories/orderRepository";
 import { ReactNode, useState, createContext, useEffect } from "react";
 
 type OrderContextProps = {
 	orders: Order[];
-	getOrders: () => void;
+	getAllOrders: () => void;
 	getSingleOrder: (id: number) => Promise<Order>;
 	updateOrder: (id: number) => void;
 	deleteOrder: (id: number) => void;
@@ -20,31 +20,18 @@ type OrderContextProviderProps = {
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
 	const [orders, setOrders] = useState<Order[]>([]);
-	const { orderService } = orderFactory();
+	const { createOrder, getAllOrders, getSingleOrder } = orderRepository();
 	useEffect(() => {
-		getOrders();
+		console.log(setOrders);
 	}, []);
-
-	const getOrders = () => {
-		orderService.getOrders().then((result) => setOrders(result.data));
-	};
-	const createOrder = (Order: Order) => {
-		orderService.createOrder(Order);
-		getOrders();
-	};
 	const deleteOrder = () => {};
 	const updateOrder = () => {};
-	const getSingleOrder = (id: number) => {
-		const response = orderService.getSingleOrder(id);
-		return response;
-	};
-
 	return (
 		<OrderContext.Provider
 			value={{
 				orders,
 				getSingleOrder,
-				getOrders,
+				getAllOrders,
 				createOrder,
 				deleteOrder,
 				updateOrder,

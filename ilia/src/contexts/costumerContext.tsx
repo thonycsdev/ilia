@@ -1,14 +1,15 @@
-import { costumerFactory } from "@/factories/costumerFactory";
+import costumerRepository from "@/repositories/customerRepository";
 import { Costumer } from "@/models/costumer";
 import { ReactNode, useState, createContext, useEffect } from "react";
+import { useQuery } from "react-query";
 
 type CostumerContextProps = {
 	costumers: Costumer[];
-	getCostumers: () => void;
 	getSingleCostumer: (id: number) => Promise<Costumer>;
 	updateCostumer: (id: number) => void;
 	deleteCostumer: (id: number) => void;
 	createCostumer: (costumer: Costumer) => void;
+	isLoading: boolean;
 };
 
 export const CostumerContext = createContext({} as CostumerContextProps);
@@ -20,39 +21,29 @@ type CostumerContextProviderProps = {
 export const CostumerContextProvider = (
 	props: CostumerContextProviderProps
 ) => {
+	const { createCostumer, deleteCostumer, getAllCostumers, getSingleCostumer } =
+		costumerRepository();
+	const { data, isSuccess } = useQuery({
+		queryFn: getAllCostumers,
+		queryKey: ["costumerKey"],
+	});
 	const { children } = props;
 	const [costumers, setCostumers] = useState<Costumer[]>([]);
-	const { costumerService } = costumerFactory();
 	useEffect(() => {
-		getCostumers().then((result) => setCostumers(result));
-	}, []);
-
-	const getCostumers = () => {
-		return costumerService.getCostumers();
-	};
-	const createCostumer = (costumer: Costumer) => {
-		costumerService.createCostumer(costumer);
-		setCostumers((old) => [...old, costumer]);
-	};
-	const deleteCostumer = (id: number) => {
-		costumerService.deleteCostumer(id);
-		setCostumers((old) => old.filter((x) => x.id !== id));
-	};
-	const updateCostumer = () => {};
-	const getSingleCostumer = (id: number) => {
-		const response = costumerService.getSingleCostumer(id);
-		return response;
-	};
-
+		if (data) {
+			setCostumers(data);
+		}
+	}, [data]);
+	function updateCostumer() {}
 	return (
 		<CostumerContext.Provider
 			value={{
 				costumers,
 				getSingleCostumer,
-				getCostumers,
 				createCostumer,
 				deleteCostumer,
 				updateCostumer,
+				isLoading: isSuccess,
 			}}
 		>
 			{children}

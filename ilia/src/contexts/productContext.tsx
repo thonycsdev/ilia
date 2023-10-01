@@ -1,4 +1,4 @@
-import ProductRepository from "@/infra/productRepository";
+import ProductRepository from "@/repositories/productRepository";
 import { Product } from "@/models/product";
 import { ReactNode, createContext, useEffect, useState } from "react";
 
