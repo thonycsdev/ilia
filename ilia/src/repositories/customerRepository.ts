@@ -24,6 +24,15 @@ export default function costumerRepository() {
 			params: { id: id },
 		});
 	}
+	function updateCostumer(costumer: Costumer) {
+		return axios.put(constantsApi.ApiKey! + "/Costumer", costumer);
+	}
 
-	return { getAllCostumers, getSingleCostumer, createCostumer, deleteCostumer };
+	return {
+		getAllCostumers,
+		getSingleCostumer,
+		createCostumer,
+		deleteCostumer,
+		updateCostumer,
+	};
 }
