@@ -1,10 +1,11 @@
 import { Costumer } from "@/models/costumer";
 import { createCostumerSchema } from "@/schemas/costumerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import ErrorSpan from "../ErrosSpan/ErrorSpan";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { CostumerContext } from "@/contexts/costumerContext";
 
 type CostumerEditFormProps = {
 	costumer: Costumer;
@@ -20,8 +21,10 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 		defaultValues: {} as Costumer,
 		resolver: zodResolver(createCostumerSchema),
 	});
+
+	const { updateCostumer } = useContext(CostumerContext);
 	const handleSubmitForm = async (payload: Costumer) => {
-		console.log(payload);
+		updateCostumer({ ...payload, id: costumer.id });
 	};
 	return (
 		<div className="w-full h-96 flex justify-center items-center">

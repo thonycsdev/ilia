@@ -25,7 +25,11 @@ export default function costumerRepository() {
 		});
 	}
 	function updateCostumer(costumer: Costumer) {
-		return axios.put(constantsApi.ApiKey! + "/Costumer", costumer);
+		console.log(costumer);
+		return axios.put(
+			constantsApi.ApiKey! + `/Customer/${costumer.id}`,
+			costumer
+		);
 	}
 
 	return {

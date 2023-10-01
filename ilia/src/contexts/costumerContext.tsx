@@ -11,7 +11,7 @@ import {
 type CostumerContextProps = {
 	costumers: Costumer[];
 	getSingleCostumer: (id: number) => Promise<Costumer>;
-	updateCostumer: (id: number) => void;
+	updateCostumer: (costumer: Costumer) => void;
 	deleteCostumer: (id: number) => void;
 	createCostumer: (costumer: Costumer) => void;
 	isLoading: boolean;
@@ -29,8 +29,13 @@ type CostumerContextProviderProps = {
 export const CostumerContextProvider = (
 	props: CostumerContextProviderProps
 ) => {
-	const { createCostumer, deleteCostumer, getAllCostumers, getSingleCostumer } =
-		costumerRepository();
+	const {
+		createCostumer,
+		deleteCostumer,
+		updateCostumer,
+		getAllCostumers,
+		getSingleCostumer,
+	} = costumerRepository();
 	const queryClient = useQueryClient();
 	const { data, isSuccess } = useQuery({
 		queryFn: getAllCostumers,
@@ -53,6 +58,14 @@ export const CostumerContextProvider = (
 		},
 	});
 
+	const updateMutation = useMutation({
+		mutationFn: updateCostumer as MutationFunction,
+		mutationKey: ["costumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
 	const handleCreateCustomer = async (costumer: Costumer) => {
 		try {
 			await createMutation.mutate(costumer);
@@ -69,9 +82,15 @@ export const CostumerContextProvider = (
 		}
 	};
 
-	const { children } = props;
+	const handleUpdateCustomer = async (costumer: Costumer) => {
+		try {
+			await updateMutation.mutate(costumer);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-	function updateCostumer() {}
+	const { children } = props;
 	return (
 		<CostumerContext.Provider
 			value={{
@@ -79,7 +98,7 @@ export const CostumerContextProvider = (
 				getSingleCostumer,
 				createCostumer: handleCreateCustomer,
 				deleteCostumer: handleDeleteCustomer,
-				updateCostumer,
+				updateCostumer: handleUpdateCustomer,
 				isLoading: isSuccess,
 			}}
 		>
