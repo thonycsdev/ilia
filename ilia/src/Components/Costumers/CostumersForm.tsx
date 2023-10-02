@@ -81,9 +81,6 @@ function CostumersForm() {
 								type="date"
 								defaultValue={initialValue.createdAt}
 							/>
-							{errors.createdAt && (
-								<ErrorSpan message={errors.createdAt.message} />
-							)}
 						</div>
 						<button
 							type="submit"

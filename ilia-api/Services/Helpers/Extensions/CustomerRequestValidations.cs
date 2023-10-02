@@ -23,5 +23,11 @@ namespace Services.Helpers.Extensions
             return;
         }
 
+        public static void CheckIfRequestAlreadyHaveADate(this CustomerRequest customer)
+        {
+            if (customer.CreatedAt.Equals(DateTime.MinValue))
+                customer.CreatedAt = DateTime.Now;
+        }
+
     }
 }

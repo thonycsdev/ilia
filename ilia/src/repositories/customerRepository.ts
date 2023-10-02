@@ -25,7 +25,6 @@ export default function costumerRepository() {
 		});
 	}
 	function updateCostumer(costumer: Costumer) {
-		console.log(costumer);
 		return axios.put(
 			constantsApi.ApiKey! + `/Customer/${costumer.id}`,
 			costumer

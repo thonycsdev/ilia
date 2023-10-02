@@ -24,10 +24,10 @@ namespace Services.Services
         {
             customer.CheckIsCustomerEmailAndNameAreWhiteSpacesOrNull();
             customer.CheckIsCustomerEmailAndNameAreEmpty();
+            customer.CheckIfRequestAlreadyHaveADate();
 
 
             var entity = _mapper.Map<Customer>(customer);
-            entity.CreatedAt = DateTime.Now;
             await _customerRepository.Create(entity);
             return _mapper.Map<CustomerResponse>(entity);
         }
@@ -54,9 +54,13 @@ namespace Services.Services
 
         public async Task<CustomerResponse> UpdateCustomer(CustomerRequest customerRequest, int id)
         {
+            customerRequest.CheckIsCustomerEmailAndNameAreWhiteSpacesOrNull();
+            customerRequest.CheckIsCustomerEmailAndNameAreEmpty();
+            customerRequest.CheckIfRequestAlreadyHaveADate();
             var entityToUpdate = await _customerRepository.GetSingleOrDefault(x => x.Id == id);
             entityToUpdate.Email = customerRequest.Email;
             entityToUpdate.Name = customerRequest.Name;
+            entityToUpdate.CreatedAt = (DateTime)customerRequest.CreatedAt;
             await _customerRepository.Update(entityToUpdate);
 
             return _mapper.Map<CustomerResponse>(entityToUpdate);

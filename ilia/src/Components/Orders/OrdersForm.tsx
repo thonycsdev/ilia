@@ -22,7 +22,7 @@ function OrdersForm() {
 	const { addOrder, isLoading } = useContext(OrderContext);
 	const handleSubmitForm = async (payload: Order) => {
 		addOrder(payload);
-		console.log(isLoading);
+
 		successToast("Order created!");
 	};
 	return (

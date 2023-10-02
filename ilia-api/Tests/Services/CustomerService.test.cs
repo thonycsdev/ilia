@@ -29,7 +29,7 @@ namespace Testes
             customerRepository = new Mock<ICustomerRepository>();
         }
         [Fact]
-        public async void Need_To_Return_Somethin_Not_Null()
+        public async void Need_To_Return_Something_Not_Null()
         {
 
             var value = fixture.Create<int>();

@@ -7,6 +7,7 @@ import {
 	useQuery,
 	useQueryClient,
 } from "react-query";
+import { checkDate } from "@/functions/checkDate";
 
 type CostumerContextProps = {
 	costumers: Costumer[];
@@ -16,9 +17,6 @@ type CostumerContextProps = {
 	createCostumer: (costumer: Costumer) => void;
 	isLoading: boolean;
 };
-// const handlePost(costumer: Costumer) => {
-
-// }
 
 export const CostumerContext = createContext({} as CostumerContextProps);
 
@@ -69,7 +67,8 @@ export const CostumerContextProvider = (
 
 	const handleCreateCustomer = async (costumer: Costumer) => {
 		try {
-			await createMutation.mutate(costumer);
+			const date = checkDate(costumer);
+			await createMutation.mutate({ ...costumer, createdAt: date });
 		} catch (error) {
 			console.error("Mutation failed with error:", error);
 		}
@@ -85,7 +84,9 @@ export const CostumerContextProvider = (
 
 	const handleUpdateCustomer = async (costumer: Costumer) => {
 		try {
-			await updateMutation.mutate(costumer);
+			const date = checkDate(costumer);
+
+			await updateMutation.mutate({ ...costumer, createdAt: date });
 		} catch (error) {
 			console.log(error);
 		}

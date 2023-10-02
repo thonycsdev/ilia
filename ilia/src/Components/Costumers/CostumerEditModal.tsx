@@ -21,7 +21,7 @@ export function CostumerEditModal(props: CostumerEditModalProps) {
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Modal Title</ModalHeader>
+					<ModalHeader>Costumer Update</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody width={"full"} height={"full"}>
 						<CostumerEditForm costumer={costumer} onClose={onClose} />

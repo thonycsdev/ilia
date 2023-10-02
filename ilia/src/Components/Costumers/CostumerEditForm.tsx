@@ -15,13 +15,14 @@ type CostumerEditFormProps = {
 
 export function CostumerEditForm(props: CostumerEditFormProps) {
 	const { costumer, onClose } = props;
+	const initialValue: Costumer = costumer;
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
 	} = useForm({
-		defaultValues: {} as Costumer,
+		defaultValues: initialValue,
 		resolver: zodResolver(createCostumerSchema),
 	});
 
@@ -43,6 +44,7 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 			setIsLoading(false);
 		}
 	};
+	if (!costumer) return null;
 	return (
 		<div className="w-full h-96 flex justify-center items-center">
 			<div className=" p-2 flex flex-col items-center bg-slate-100 rounded-lg shadow-2xl">
@@ -86,9 +88,6 @@ export function CostumerEditForm(props: CostumerEditFormProps) {
 							id="grid-first-name"
 							type="date"
 						/>
-						{errors.createdAt && (
-							<ErrorSpan message={errors.createdAt.message} />
-						)}
 					</div>
 					<button
 						className="w-40 h-10 rounded-lg transform duration-100 bg-gray-200 hover:scale-105 hover:bg-gray-200"
