@@ -2,7 +2,7 @@
 
 1. Navigate to the directory of the API:
    ```bash
-   cd api
+   cd ilia-api
    ```
 2. Restore the project dependencies:
    ```bash
@@ -22,7 +22,7 @@
 
 1. Navigate to the directory of the Next.js project:
    ```bash
-   cd frontend
+   cd ilia
    ```
 2. Install the Node.js dependencies:
    ```bash
