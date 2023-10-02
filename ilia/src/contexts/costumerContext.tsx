@@ -1,15 +1,24 @@
-import { costumerFactory } from "@/factories/costumerFactory";
+import costumerRepository from "@/repositories/customerRepository";
 import { Costumer } from "@/models/costumer";
-import { ReactNode, useState, createContext, useEffect } from "react";
+import { ReactNode, createContext } from "react";
+import {
+	MutationFunction,
+	useMutation,
+	useQuery,
+	useQueryClient,
+} from "react-query";
 
 type CostumerContextProps = {
 	costumers: Costumer[];
-	getCostumers: () => void;
 	getSingleCostumer: (id: number) => Promise<Costumer>;
-	updateCostumer: (id: number) => void;
+	updateCostumer: (costumer: Costumer) => void;
 	deleteCostumer: (id: number) => void;
 	createCostumer: (costumer: Costumer) => void;
+	isLoading: boolean;
 };
+// const handlePost(costumer: Costumer) => {
+
+// }
 
 export const CostumerContext = createContext({} as CostumerContextProps);
 
@@ -20,39 +29,78 @@ type CostumerContextProviderProps = {
 export const CostumerContextProvider = (
 	props: CostumerContextProviderProps
 ) => {
+	const {
+		createCostumer,
+		deleteCostumer,
+		updateCostumer,
+		getAllCostumers,
+		getSingleCostumer,
+	} = costumerRepository();
+	const queryClient = useQueryClient();
+	const { data, isSuccess } = useQuery({
+		queryFn: getAllCostumers,
+		queryKey: ["costumer"],
+	});
+
+	const createMutation = useMutation({
+		mutationFn: createCostumer as MutationFunction,
+		mutationKey: ["costumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
+	const deleteMutation = useMutation({
+		mutationFn: deleteCostumer as MutationFunction,
+		mutationKey: ["costumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
+	const updateMutation = useMutation({
+		mutationFn: updateCostumer as MutationFunction,
+		mutationKey: ["singleCostumer"],
+		onSuccess: () => {
+			queryClient.invalidateQueries(["singleCostumer"]);
+			queryClient.invalidateQueries(["costumer"]);
+		},
+	});
+
+	const handleCreateCustomer = async (costumer: Costumer) => {
+		try {
+			await createMutation.mutate(costumer);
+		} catch (error) {
+			console.error("Mutation failed with error:", error);
+		}
+	};
+
+	const handleDeleteCustomer = async (id: number) => {
+		try {
+			await deleteMutation.mutate(id);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleUpdateCustomer = async (costumer: Costumer) => {
+		try {
+			await updateMutation.mutate(costumer);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const { children } = props;
-	const [costumers, setCostumers] = useState<Costumer[]>([]);
-	const { costumerService } = costumerFactory();
-	useEffect(() => {
-		getCostumers().then((result) => setCostumers(result));
-	}, []);
-
-	const getCostumers = () => {
-		return costumerService.getCostumers();
-	};
-	const createCostumer = (costumer: Costumer) => {
-		costumerService.createCostumer(costumer);
-		setCostumers((old) => [...old, costumer]);
-	};
-	const deleteCostumer = (id: number) => {
-		costumerService.deleteCostumer(id);
-		setCostumers((old) => old.filter((x) => x.id !== id));
-	};
-	const updateCostumer = () => {};
-	const getSingleCostumer = (id: number) => {
-		const response = costumerService.getSingleCostumer(id);
-		return response;
-	};
-
 	return (
 		<CostumerContext.Provider
 			value={{
-				costumers,
+				costumers: data,
 				getSingleCostumer,
-				getCostumers,
-				createCostumer,
-				deleteCostumer,
-				updateCostumer,
+				createCostumer: handleCreateCustomer,
+				deleteCostumer: handleDeleteCustomer,
+				updateCostumer: handleUpdateCustomer,
+				isLoading: isSuccess,
 			}}
 		>
 			{children}

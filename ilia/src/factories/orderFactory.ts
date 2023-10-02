@@ -1,4 +1,4 @@
-import OrderRepository from "@/infra/orderRepository";
+import OrderRepository from "@/repositories/orderRepository";
 import { OrderService } from "@/service/orderService";
 
 export function orderFactory() {

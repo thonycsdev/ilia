@@ -1,14 +1,17 @@
-import { orderFactory } from "@/factories/orderFactory";
 import { Order } from "@/models/costumer";
-import { ReactNode, useState, createContext, useEffect } from "react";
+import orderRepository from "@/repositories/orderRepository";
+import { ReactNode, createContext } from "react";
+import { useQuery, MutationFunction } from "react-query";
+import { createMutation } from "./mutation/mutation";
 
 type OrderContextProps = {
 	orders: Order[];
-	getOrders: () => void;
+	getAllOrders: () => void;
 	getSingleOrder: (id: number) => Promise<Order>;
 	updateOrder: (id: number) => void;
 	deleteOrder: (id: number) => void;
-	createOrder: (costumer: Order) => void;
+	addOrder: (costumer: Order) => void;
+	isLoading: boolean;
 };
 
 export const OrderContext = createContext({} as OrderContextProps);
@@ -19,35 +22,31 @@ type OrderContextProviderProps = {
 
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
-	const [orders, setOrders] = useState<Order[]>([]);
-	const { orderService } = orderFactory();
-	useEffect(() => {
-		getOrders();
-	}, []);
+	const { createOrder, getAllOrders, getSingleOrder } = orderRepository();
+	const { data, isSuccess } = useQuery({
+		queryFn: getAllOrders,
+		queryKey: ["ordersKey"],
+	});
+	const { mutate } = createMutation(
+		createOrder as MutationFunction,
+		"ordersKey"
+	);
 
-	const getOrders = () => {
-		orderService.getOrders().then((result) => setOrders(result.data));
-	};
-	const createOrder = (Order: Order) => {
-		orderService.createOrder(Order);
-		getOrders();
+	const addOrder = (order: Order) => {
+		mutate(order);
 	};
 	const deleteOrder = () => {};
 	const updateOrder = () => {};
-	const getSingleOrder = (id: number) => {
-		const response = orderService.getSingleOrder(id);
-		return response;
-	};
-
 	return (
 		<OrderContext.Provider
 			value={{
-				orders,
+				orders: data,
 				getSingleOrder,
-				getOrders,
-				createOrder,
+				getAllOrders,
+				addOrder,
 				deleteOrder,
 				updateOrder,
+				isLoading: isSuccess,
 			}}
 		>
 			{children}

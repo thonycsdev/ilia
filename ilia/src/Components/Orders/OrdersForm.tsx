@@ -1,5 +1,5 @@
 import { Order } from "@/models/costumer";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Toast from "../Toast/Toast";
@@ -18,16 +18,12 @@ function OrdersForm() {
 	const { register, handleSubmit } = useForm({ defaultValues: initialValue });
 	const { costumers } = useContext(CostumerContext);
 	const { products } = useContext(ProductContext);
-	const [isLoading, setIsLoading] = useState(false);
 	const { successToast } = Toast();
-	const { createOrder } = useContext(OrderContext);
+	const { addOrder, isLoading } = useContext(OrderContext);
 	const handleSubmitForm = async (payload: Order) => {
-		setIsLoading(true);
-		setTimeout(() => {
-			createOrder(payload);
-			setIsLoading(false);
-			successToast("Order created!");
-		}, 500);
+		addOrder(payload);
+		console.log(isLoading);
+		successToast("Order created!");
 	};
 	return (
 		<>
@@ -72,7 +68,7 @@ function OrdersForm() {
 							type="submit"
 							className="w-40 h-10 rounded-lg mt-8 mx-auto bg-gray-200"
 						>
-							{isLoading ? <LoadingSpinner /> : "Create Order"}
+							{!isLoading ? <LoadingSpinner /> : "Create Order"}
 						</button>
 					</form>
 				</div>

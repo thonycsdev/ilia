@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 import Card from "../Cards/Card";
 
 function Costumers() {
-	const { costumers } = useContext(CostumerContext);
-
+	const { costumers, isLoading } = useContext(CostumerContext);
+	if (!isLoading && !costumers) return <h1>Loading</h1>;
 	return (
 		<div className="w-screen h-screen flex justify-center pt-24 gap-8 flex-wrap">
 			{costumers.map((costumer) => (

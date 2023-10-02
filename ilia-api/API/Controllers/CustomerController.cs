@@ -42,7 +42,7 @@ namespace ilia_api.Controllers
             await _customerService.DeleteCustomer(id);
             return Ok();
         }
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult<CustomerResponse>> GetAll(int id, CustomerRequest viewModel)
         {
             var result = await _customerService.UpdateCustomer(viewModel, id);
