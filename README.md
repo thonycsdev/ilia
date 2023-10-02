@@ -1,1 +1,43 @@
-# ilia
+## Configuring the API in ASP.NET Core
+
+1. Navigate to the directory of the API:
+   ```bash
+   cd api
+   ```
+2. Restore the project dependencies:
+   ```bash
+   dotnet restore
+   ```
+3. Apply database migrations (if applicable):
+   ```bash
+   dotnet ef database update
+   ```
+4. Start the API server:
+   ```bash
+   dotnet run
+   ```
+
+
+## Configuring the Next.js Project
+
+1. Navigate to the directory of the Next.js project:
+   ```bash
+   cd frontend
+   ```
+2. Install the Node.js dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Next.js project:
+   ```bash
+   npm run dev
+   ```
+4. The frontend will be available at http://localhost:3000.
+
+## Accessing the Application
+
+You can now access the application in your browser:
+
+- API Console: It will be reported in the console.
+- API VS: Running the API project through Visual Studio will automatically open Swagger.
+- Frontend: http://localhost:3000
