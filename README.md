@@ -1,3 +1,29 @@
+# Ilia Project
+
+Ilia is a project created as a challenge for the Ília selection process.
+
+With this project, you can create customers and orders. Customers can have multiple orders, while each order is associated with only one customer.
+
+## Features
+
+- **Customers:**
+  - Create a new customer.
+  - Edit the information of an existing customer.
+  - Remove a customer.
+
+- **Orders:**
+  - Create a new order, associating it with an existing customer.
+  - Specify the products in the order.
+  
+- **Products:**
+  - View the list of available products in the "Products" tab.
+
+## Viewing Customer Orders
+
+After creating orders and associating them with customers, you can return to the home page and click on the customer's card. There, you will see the list of orders assigned to that customer.
+
+
+
 ## Configuring the API in ASP.NET Core
 
 1. Navigate to the directory of the API:
