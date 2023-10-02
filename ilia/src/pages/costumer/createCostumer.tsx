@@ -1,4 +1,4 @@
-import CostumersForm from "@/components/Costumers/CostumersForm";
+import CostumersForm from "@/Components/Costumers/CostumersForm";
 import React from "react";
 
 function createCostumer() {
