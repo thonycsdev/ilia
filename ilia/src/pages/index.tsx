@@ -1,7 +1,18 @@
 import Footer from "@/components/Footer/Footer";
 import QuickAccess from "@/components/QuickAcess/QuickAccess";
+import { Costumer, Order } from "@/models/costumer";
+import costumerRepository from "@/repositories/customerRepository";
+import orderRepository from "@/repositories/orderRepository";
 
-export default function Home() {
+type HomeProps = {
+	response: {
+		orders: Order[];
+		costumers: Costumer[];
+	};
+};
+
+export default function Home({ response }: HomeProps) {
+	console.log(response);
 	return (
 		<>
 			<header>
@@ -41,9 +52,28 @@ export default function Home() {
 				</div>
 			</header>
 			<body>
-				<QuickAccess />
+				<QuickAccess
+					costumersLenght={response.costumers.length}
+					ordersLenght={response.orders.length}
+				/>
 			</body>
 			<Footer />
 		</>
 	);
+}
+
+export async function getServerSideProps() {
+	const { getAllCostumers } = costumerRepository();
+	const { getAllOrders } = orderRepository();
+	const orders = await getAllOrders();
+	const costumers = await getAllCostumers();
+
+	return {
+		props: {
+			response: {
+				orders,
+				costumers,
+			},
+		},
+	};
 }

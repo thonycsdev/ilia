@@ -5,7 +5,7 @@ import React from "react";
 type TableItemProps = {
 	costumer: Costumer;
 };
-
+//futuramente onClick levar para o detalhamento do costumer
 function TableItem({ costumer }: TableItemProps) {
 	return (
 		<tr className="odd:bg-white even:bg-slate-50">

@@ -4,6 +4,10 @@ import { Costumer } from "@/models/costumer";
 type TableProps = {
 	costumers: Costumer[];
 };
+
+// Faltou fazer paginacao, seria mt legal ter.
+//Table tem o mesmo nome que o componente do chakra UI, cuidado ao importar esse aqui.
+
 function Table({ costumers }: TableProps) {
 	return (
 		<table className="shadow-md w-3/4 mx-auto mt-14 rounded-md table-auto">

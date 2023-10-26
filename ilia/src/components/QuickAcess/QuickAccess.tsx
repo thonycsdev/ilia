@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import QuickAccessItem from "./QuickAccessItem";
-import { CostumerContext } from "@/contexts/costumerContext";
-import { OrderContext } from "@/contexts/orderContext";
 
-function QuickAccess() {
-	const { costumers } = useContext(CostumerContext);
-	const { orders } = useContext(OrderContext);
+type QuickAccessProps = {
+	costumersLenght: number;
+	ordersLenght: number;
+};
+
+function QuickAccess({ costumersLenght, ordersLenght }: QuickAccessProps) {
 	return (
 		<div className="flex justify-center w-9/12  m-auto gap-4">
-			<QuickAccessItem itemName="Total Costumers" value={costumers.length} />
-			<QuickAccessItem itemName="Total Orders" value={orders.length} />
+			<QuickAccessItem itemName="Total Costumers" value={costumersLenght} />
+			<QuickAccessItem itemName="Total Orders" value={ordersLenght} />
 		</div>
 	);
 }
