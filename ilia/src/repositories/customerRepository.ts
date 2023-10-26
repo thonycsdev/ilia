@@ -1,11 +1,15 @@
 import { constantsApi } from "@/constants/constantsApi";
 import { Costumer } from "@/models/costumer";
+import https from "https";
 import axios from "axios";
 
 export default function costumerRepository() {
+	const agent = new https.Agent({
+		rejectUnauthorized: false, // This allows self-signed certificates
+	});
 	function getAllCostumers() {
 		return axios
-			.get(`${constantsApi.ApiKey}/getAllCustomers`)
+			.get(`${constantsApi.ApiKey}/getAllCustomers`, { httpsAgent: agent })
 			.then((data) => data.data);
 	}
 

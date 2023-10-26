@@ -1,9 +1,8 @@
-import { Order } from "@/models/costumer";
+import { Costumer, Order } from "@/models/costumer";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Toast from "../Toast/Toast";
-import { CostumerContext } from "@/contexts/costumerContext";
 import { OrderContext } from "@/contexts/orderContext";
 import { ProductContext } from "@/contexts/productContext";
 
@@ -13,13 +12,15 @@ const initialValue: Order = {
 	customerId: 0,
 	productId: 0,
 };
-
-function OrdersForm() {
+type OrdersFormProps = {
+	costumers: Costumer[];
+};
+function OrdersForm({ costumers }: OrdersFormProps) {
 	const { register, handleSubmit } = useForm({ defaultValues: initialValue });
-	const { costumers } = useContext(CostumerContext);
-	const { products } = useContext(ProductContext);
+
 	const { successToast } = Toast();
 	const { addOrder, isLoading } = useContext(OrderContext);
+	const { products } = useContext(ProductContext);
 	const handleSubmitForm = async (payload: Order) => {
 		addOrder(payload);
 
