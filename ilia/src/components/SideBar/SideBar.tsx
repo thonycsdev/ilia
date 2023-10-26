@@ -2,18 +2,6 @@ import React from "react";
 import { HomeIcon, PencilIcon } from "@heroicons/react/24/outline";
 import SideBarItem from "./SideBarItem";
 
-const navList = [
-	{
-		title: "Costumers",
-		icon: <HomeIcon className="h-5 w-5 text-gray-100" />,
-		route: "/costumers",
-	},
-	{
-		title: "Create Costumer",
-		icon: <PencilIcon className="h-5 w-5 text-gray-100" />,
-	},
-];
-
 function SideBar() {
 	return (
 		<div className="flex min-h-screen">
@@ -22,9 +10,15 @@ function SideBar() {
 					<span className="text-white text-xl font-medium">Menu</span>
 				</div>
 				<ul className="flex flex-col text-white space-y-2 text-sm mt-4">
-					{navList.map((n, i) => (
-						<SideBarItem icon={n.icon} itemTitle={n.title} key={i} />
-					))}
+					<SideBarItem
+						route={"/costumers"}
+						icon={<HomeIcon className="h-5 w-5 text-gray-100" />}
+						itemTitle={"Costumers"}
+					/>
+					<SideBarItem
+						icon={<PencilIcon className="h-5 w-5 text-gray-100" />}
+						itemTitle={"Create Costumer"}
+					/>
 				</ul>
 			</div>
 		</div>

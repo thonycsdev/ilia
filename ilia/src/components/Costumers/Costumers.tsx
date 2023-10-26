@@ -1,21 +1,14 @@
-import { CostumerContext } from "@/contexts/costumerContext";
-import React, { useContext } from "react";
-import Card from "../Cards/Card";
+import React from "react";
+import { Costumer } from "@/models/costumer";
+import Table from "../Table/Table";
 
-function Costumers() {
-	const { costumers, isLoading } = useContext(CostumerContext);
-	if (!isLoading && !costumers) return <h1>Loading</h1>;
-	return (
-		<div className="w-screen h-screen flex justify-center pt-24 gap-8 flex-wrap">
-			{costumers.map((costumer) => (
-				<Card
-					data-testid="custom-element"
-					costumer={costumer}
-					key={costumer.id}
-				/>
-			))}
-		</div>
-	);
+type CostumersProps = {
+	costumers: Costumer[];
+};
+
+function Costumers({ costumers }: CostumersProps) {
+	if (!costumers) return <h1>Loading</h1>;
+	return <Table costumers={costumers} />;
 }
 
 export default Costumers;
