@@ -1,6 +1,6 @@
 export type Costumer = {
 	id: number;
-	createdAt: string;
+	createdAt: string | Date;
 	name: string;
 	email: string;
 	orders: Order[];

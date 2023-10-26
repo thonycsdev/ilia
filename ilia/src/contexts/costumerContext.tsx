@@ -7,14 +7,14 @@ import {
 	useQuery,
 	useQueryClient,
 } from "react-query";
-import { checkDate } from "@/functions/checkDate";
+import { useRouter } from "next/router";
 
-type CostumerContextProps = {
+export type CostumerContextProps = {
 	costumers: Costumer[];
 	getSingleCostumer: (id: number) => Promise<Costumer>;
 	updateCostumer: (costumer: Costumer) => void;
 	deleteCostumer: (id: number) => void;
-	createCostumer: (costumer: Costumer) => void;
+	createCostumer: (costumer: Costumer) => Promise<void>;
 	isLoading: boolean;
 };
 
@@ -39,14 +39,7 @@ export const CostumerContextProvider = (
 		queryFn: getAllCostumers,
 		queryKey: ["costumer"],
 	});
-
-	const createMutation = useMutation({
-		mutationFn: createCostumer as MutationFunction,
-		mutationKey: ["costumer"],
-		onSuccess: () => {
-			queryClient.invalidateQueries(["costumer"]);
-		},
-	});
+	const { push } = useRouter();
 
 	const deleteMutation = useMutation({
 		mutationFn: deleteCostumer as MutationFunction,
@@ -66,12 +59,8 @@ export const CostumerContextProvider = (
 	});
 
 	const handleCreateCustomer = async (costumer: Costumer) => {
-		try {
-			const date = checkDate(costumer);
-			await createMutation.mutate({ ...costumer, createdAt: date });
-		} catch (error) {
-			console.error("Mutation failed with error:", error);
-		}
+		await createCostumer(costumer);
+		push("/costumers");
 	};
 
 	const handleDeleteCustomer = async (id: number) => {
@@ -84,9 +73,7 @@ export const CostumerContextProvider = (
 
 	const handleUpdateCustomer = async (costumer: Costumer) => {
 		try {
-			const date = checkDate(costumer);
-
-			await updateMutation.mutate({ ...costumer, createdAt: date });
+			await updateMutation.mutate({ ...costumer });
 		} catch (error) {
 			console.log(error);
 		}
