@@ -7,7 +7,6 @@ import {
 	useQuery,
 	useQueryClient,
 } from "react-query";
-import { checkDate } from "@/functions/checkDate";
 import { useRouter } from "next/router";
 
 export type CostumerContextProps = {
@@ -74,9 +73,7 @@ export const CostumerContextProvider = (
 
 	const handleUpdateCustomer = async (costumer: Costumer) => {
 		try {
-			const date = checkDate(costumer);
-
-			await updateMutation.mutate({ ...costumer, createdAt: date });
+			await updateMutation.mutate({ ...costumer });
 		} catch (error) {
 			console.log(error);
 		}
