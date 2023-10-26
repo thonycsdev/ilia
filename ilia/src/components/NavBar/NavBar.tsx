@@ -9,10 +9,10 @@ function NavBar(props: NavBarProps) {
 	return (
 		<>
 			<nav className="flex items-center justify-between p-6 container mx-auto">
-				<a href="/" className="relative text-2xl font-extrabold">
+				<Link href="/" className="relative text-2xl font-extrabold">
 					<span className="absolute w-10 h-2 bg-cyan-300 bottom-1 right-0"></span>
 					<span className="relative z-10">Ilia Desafio V2</span>
-				</a>
+				</Link>
 
 				<div className="text-base text-gray-900 hidden lg:flex">
 					<Link
@@ -22,7 +22,7 @@ function NavBar(props: NavBarProps) {
 						Home
 					</Link>
 					<Link
-						href="/costumer"
+						href="/costumers"
 						className="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10"
 					>
 						Costumers
