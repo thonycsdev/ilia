@@ -1,4 +1,4 @@
-import NavBar from "@/Components/NavBar/NavBar";
+import NavBar from "@/components/NavBar/NavBar";
 import { CostumerContextProvider } from "@/contexts/costumerContext";
 import { OrderContextProvider } from "@/contexts/orderContext";
 import { ProductContextProvider } from "@/contexts/productContext";

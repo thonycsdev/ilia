@@ -1,4 +1,4 @@
-import OrderCard from "@/Components/Cards/OrderCard";
+import OrderCard from "@/components/Cards/OrderCard";
 import { OrderContext } from "@/contexts/orderContext";
 import React, { useContext } from "react";
 
