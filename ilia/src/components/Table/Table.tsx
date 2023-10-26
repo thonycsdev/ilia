@@ -26,7 +26,7 @@ function Table({ costumers }: TableProps) {
 			</thead>
 			<tbody>
 				{costumers.map((costumer) => (
-					<TableItem costumer={costumer} />
+					<TableItem costumer={costumer} key={costumer.id} />
 				))}
 			</tbody>
 		</table>

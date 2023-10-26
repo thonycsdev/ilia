@@ -28,7 +28,7 @@ function Footer() {
 					<span className="mt-2 text-sm text-gray-300">
 						Feito por:
 						<a
-							href="https://themeptation.net"
+							href="https://www.linkedin.com/in/anthonycoutinho98/"
 							className="mx-2 font-semibbold text-black hover:text-cyan-500"
 							rel="noopener noreferrer"
 						>

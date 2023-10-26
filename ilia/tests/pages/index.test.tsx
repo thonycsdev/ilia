@@ -14,14 +14,15 @@ describe("Costumers Home Page Test", () => {
 		<CostumerContext.Provider
 			value={{ ...ctxValues, costumers: costumersMock }}
 		>
-			<Costumers />
+			<Costumers costumers={costumersMock} />
 		</CostumerContext.Provider>
 	);
 	afterEach(() => {
 		cleanup();
 	});
 	test("Should render cards based on the current number of costumers in the array", async () => {
-		const cards = await screen.findAllByRole("link");
-		expect(cards.length).toBe(costumersMock.length);
+		const cards = await screen.findAllByRole("row");
+		//adicionando + 1 por conta da header da table contar tbm na length
+		expect(cards.length).toBe(costumersMock.length + 1);
 	});
 });
