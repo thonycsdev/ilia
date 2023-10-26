@@ -1,3 +1,3 @@
-describe("Costumer Edit Form", () => {
-	test("");
+describe.skip("Costumer Edit Form", () => {
+	test("", () => {});
 });

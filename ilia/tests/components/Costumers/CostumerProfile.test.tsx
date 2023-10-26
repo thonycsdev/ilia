@@ -1,6 +1,6 @@
 import CostumerProfile from "@/components/Costumers/CostumerProfile";
 import { Costumer } from "@/models/costumer";
-import { logRoles, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 
 const costumer: Costumer = {
 	id: 1,
@@ -21,8 +21,7 @@ jest.autoMockOn();
 
 describe("Costumer profile tests", () => {
 	beforeEach(() => {
-		const { container } = render(<CostumerProfile costumer={costumer} />);
-		logRoles(container);
+		render(<CostumerProfile costumer={costumer} />);
 	});
 	test("Should render both buttons, delete and update", async () => {
 		const buttons = await screen.findAllByRole("button");
