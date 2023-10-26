@@ -6,36 +6,24 @@ import { CostumerContext } from "@/contexts/costumerContext";
 import Toast from "../Toast/Toast";
 import { useDisclosure } from "@chakra-ui/react";
 import { CostumerEditModal } from "./CostumerEditModal";
-import { useQuery } from "react-query";
 
 type CostumerProfileProps = {
 	costumer: Costumer;
 };
 
 function CostumerProfile(props: CostumerProfileProps) {
-	const { costumer } = props;
+	const { costumer: data } = props;
 	const { successToast } = Toast();
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { deleteCostumer, getSingleCostumer, isLoading } =
-		useContext(CostumerContext);
-
-	const { data } = useQuery<Costumer>({
-		queryFn: () => getSingleCostumer(costumer.id),
-		queryKey: ["singleCostumer"],
-	});
-	if (!data?.orders || !data) return null;
+	const { deleteCostumer, isLoading } = useContext(CostumerContext);
 
 	const handleOnClickDelete = () => {
-		deleteCostumer(data!.id);
+		deleteCostumer(data.id);
 		successToast("Costumer Deleted");
 	};
 	return (
 		<>
-			<CostumerEditModal
-				isOpen={isOpen}
-				onClose={onClose}
-				costumer={costumer}
-			/>
+			<CostumerEditModal isOpen={isOpen} onClose={onClose} costumer={data} />
 			<div className="w-screen h-screen flex justify-center items-center pb-20">
 				<div className="w-4/6 h-full overflow-auto flex flex-col items-center bg-slate-100 rounded-lg shadow-lg p-4">
 					<div className="flex justify-end w-full gap-10">

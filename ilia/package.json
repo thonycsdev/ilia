@@ -20,6 +20,7 @@
 		"axios": "^1.5.1",
 		"framer-motion": "^10.16.4",
 		"next": "latest",
+		"next-router-mock": "^0.9.10",
 		"react": "latest",
 		"react-dom": "latest",
 		"react-hook-form": "^7.46.2",

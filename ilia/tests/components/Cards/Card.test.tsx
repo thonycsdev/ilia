@@ -1,10 +1,9 @@
 import Card from "@/components/Cards/Card";
-import { cleanup, logRoles, render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { createCostumerArray } from "../../mockData/mockCostumers";
 
 describe("Single Card tests", () => {
-	const { container } = render(<Card costumer={createCostumerArray(1)[0]} />);
-	logRoles(container);
+	render(<Card costumer={createCostumerArray(1)[0]} />);
 	afterEach(() => {
 		cleanup();
 	});

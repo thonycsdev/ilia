@@ -1,3 +1,4 @@
+"use client";
 import CostumerProfile from "@/components/Costumers/CostumerProfile";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { Costumer } from "@/models/costumer";
