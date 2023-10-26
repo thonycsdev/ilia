@@ -2,7 +2,11 @@ import React from "react";
 import { HomeIcon, PencilIcon } from "@heroicons/react/24/outline";
 import SideBarItem from "./SideBarItem";
 
-function SideBar() {
+type SideBarProps = {
+	onCreateCostumerClick?: () => void;
+};
+
+function SideBar({ onCreateCostumerClick }: SideBarProps) {
 	return (
 		<div className="flex min-h-screen">
 			<div className="w-64 bg-cyan-900 shrink-0">
@@ -18,6 +22,7 @@ function SideBar() {
 					<SideBarItem
 						icon={<PencilIcon className="h-5 w-5 text-gray-100" />}
 						itemTitle={"Create Costumer"}
+						onClick={onCreateCostumerClick}
 					/>
 				</ul>
 			</div>
