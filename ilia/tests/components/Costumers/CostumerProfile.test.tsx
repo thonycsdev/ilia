@@ -7,7 +7,14 @@ const costumer: Costumer = {
 	createdAt: "2023/11/15",
 	name: "Anthony",
 	email: "a@a",
-	orders: [],
+	orders: [
+		{
+			createdAt: "2023/11/15",
+			customerId: 1,
+			id: 1,
+			productId: 1,
+		},
+	],
 };
 
 jest.autoMockOn();
@@ -61,5 +68,13 @@ describe("Costumer profile tests", () => {
 		waitFor(() => {
 			expect(costumerCreatedDate).toHaveValue("2023/11/15");
 		});
+	});
+
+	test("Should render the only order available", async () => {
+		const orderId = await screen.findByText("Order Id:");
+		const productId = await screen.findByText("Product Id:");
+
+		expect(orderId).toBeInTheDocument();
+		expect(productId).toBeInTheDocument();
 	});
 });
