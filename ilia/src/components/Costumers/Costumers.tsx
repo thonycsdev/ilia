@@ -8,7 +8,11 @@ function Costumers() {
 	return (
 		<div className="w-screen h-screen flex justify-center pt-24 gap-8 flex-wrap">
 			{costumers.map((costumer) => (
-				<Card costumer={costumer} key={costumer.id} />
+				<Card
+					data-testid="custom-element"
+					costumer={costumer}
+					key={costumer.id}
+				/>
 			))}
 		</div>
 	);

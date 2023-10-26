@@ -9,7 +9,7 @@ import {
 } from "react-query";
 import { checkDate } from "@/functions/checkDate";
 
-type CostumerContextProps = {
+export type CostumerContextProps = {
 	costumers: Costumer[];
 	getSingleCostumer: (id: number) => Promise<Costumer>;
 	updateCostumer: (costumer: Costumer) => void;
