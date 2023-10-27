@@ -13,6 +13,7 @@ import { CartContext } from "@/contexts/cartContext";
 import CartItemLabel from "../Cart/CartItemLabel";
 import { Costumer } from "@/models/costumer";
 import Toast from "../Toast/Toast";
+import { OrderContext } from "@/contexts/orderContext";
 
 type CreateOrderModalProps = {
 	isOpen: boolean;
@@ -26,13 +27,23 @@ function CreateOrderModal({
 	costumers,
 }: CreateOrderModalProps) {
 	const { cartItens, cartCleanUp } = useContext(CartContext);
+	const { addOrder } = useContext(OrderContext);
 	const { register, handleSubmit } = useForm();
-	const handleSubmitForm = (data: FieldValues) => {
+	const handleSubmitForm = async (data: FieldValues) => {
+		try {
+			await addOrder({
+				customerId: data.customerId,
+				createdAt: new Date(),
+				productsIds: cartItens.map((item) => item.id),
+			});
+			cartCleanUp();
+			onClose();
+			const { successToast } = Toast();
+			successToast("Order Received!");
+		} catch (error) {
+			console.log(error);
+		}
 		console.log(data);
-		cartCleanUp();
-		onClose();
-		const { successToast } = Toast();
-		successToast("Order Received!");
 	};
 	return (
 		<>

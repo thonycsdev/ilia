@@ -12,7 +12,7 @@ const costumer: Costumer = {
 			createdAt: "2023/11/15",
 			customerId: 1,
 			id: 1,
-			productId: 1,
+			productsIds: 1,
 		},
 	],
 };

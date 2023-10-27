@@ -7,8 +7,8 @@ export type Costumer = {
 };
 
 export type Order = {
-	id: number;
-	createdAt: string;
+	id?: number;
+	createdAt: string | Date;
 	customerId: number;
-	productId: number;
+	productsIds: number[];
 };

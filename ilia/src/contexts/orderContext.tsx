@@ -1,8 +1,7 @@
 import { Order } from "@/models/costumer";
 import orderRepository from "@/repositories/orderRepository";
 import { ReactNode, createContext } from "react";
-import { useQuery, MutationFunction } from "react-query";
-import { createMutation } from "./mutation/mutation";
+import { useQuery } from "react-query";
 
 type OrderContextProps = {
 	orders: Order[];
@@ -10,7 +9,7 @@ type OrderContextProps = {
 	getSingleOrder: (id: number) => Promise<Order>;
 	updateOrder: (id: number) => void;
 	deleteOrder: (id: number) => void;
-	addOrder: (costumer: Order) => void;
+	addOrder: (costumer: Order) => Promise<void>;
 	isLoading: boolean;
 };
 
@@ -27,13 +26,9 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 		queryFn: getAllOrders,
 		queryKey: ["ordersKey"],
 	});
-	const { mutate } = createMutation(
-		createOrder as MutationFunction,
-		"ordersKey"
-	);
 
-	const addOrder = (order: Order) => {
-		mutate(order);
+	const addOrder = async (order: Order) => {
+		await createOrder(order);
 	};
 	const deleteOrder = () => {};
 	const updateOrder = () => {};

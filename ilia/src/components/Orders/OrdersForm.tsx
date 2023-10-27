@@ -10,7 +10,7 @@ const initialValue: Order = {
 	id: 0,
 	createdAt: "",
 	customerId: 0,
-	productId: 0,
+	productsIds: 0,
 };
 type OrdersFormProps = {
 	costumers: Costumer[];

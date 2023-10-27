@@ -4,6 +4,6 @@ namespace Services.Entities
     {
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }
-        public int ProductId { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

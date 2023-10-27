@@ -52,6 +52,12 @@ namespace Services.Services
             return _mapper.Map<OrderResponse>(results);
         }
 
+        public async Task<IEnumerable<OrderResponse>> GetOrdersByCostumerId(int costumerId)
+        {
+            var results = await _orderRepository.GetOrdersWithProducts(x => x.CustomerId == costumerId);
+            return _mapper.Map<List<OrderResponse>>(results);
+        }
+
         public async Task<OrderResponse> UpdateOrder(OrderRequest orderRequest, int id)
         {
             var entityToUpdate = await _orderRepository.GetSingleOrDefault(x => x.Id == id);
