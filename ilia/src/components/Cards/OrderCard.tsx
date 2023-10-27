@@ -19,30 +19,25 @@ function OrderCard(props: OrderCardProps) {
 			<div className="flex items-center flex-row h-full justify-around">
 				<table className="shadow-md w-3/4 rounded-md table-auto ">
 					<thead className="bg-slate-100 border-b border-slate-200">
-						<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
-							<label>Costumer</label>
-						</th>
-						<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
-							<label>Products Quantity</label>
-						</th>
-						<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
-							<label>Price</label>
-						</th>
+						<tr>
+							<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
+								<label>Costumer</label>
+							</th>
+							<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
+								<label>Products Quantity</label>
+							</th>
+							<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md border">
+								<label>Price</label>
+							</th>
+						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								<div className="px-6 "> {order.customer?.name}</div>
-							</td>
-							<td>
-								<div className="px-6 "> {order.products.length}</div>
-							</td>
-							<td>
-								<div className="px-6 "> {23112}</div>
-							</td>
+							<td className="px-6 ">{order.customer?.name}</td>
+							<td className="px-6 ">{order.customer?.orders.length}</td>
+							<td className="px-6 ">{1234}</td>
 						</tr>
 					</tbody>
-					<div></div>
 				</table>
 				<div className="">
 					<StantardButton>Details...</StantardButton>
