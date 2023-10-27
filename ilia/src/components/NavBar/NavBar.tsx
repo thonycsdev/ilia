@@ -10,7 +10,7 @@ function NavBar(props: NavBarProps) {
 		<>
 			<nav className="flex items-center justify-between p-6 container mx-auto">
 				<Link href="/" className="relative text-2xl font-extrabold">
-					<span className="absolute w-10 h-2 bg-cyan-300 bottom-1 right-0"></span>
+					<span className="absolute w-10 h-2 bg-cyan-500 bottom-1 right-0"></span>
 					<span className="relative z-10">Ilia Desafio V2</span>
 				</Link>
 
@@ -46,7 +46,7 @@ function NavBar(props: NavBarProps) {
 						<button className="font-bold py-2 px-6 text-gray-600 hover:text-gray-700 text-base hidden lg:inline-flex">
 							Sign in
 						</button>
-						<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-500">
+						<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-900">
 							Sign up
 						</button>
 					</div>
