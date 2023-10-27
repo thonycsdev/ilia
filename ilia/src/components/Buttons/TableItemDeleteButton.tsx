@@ -13,6 +13,8 @@ function TableItemDeleteButton({ onDelete }: TableItemDeleteButtonProps) {
 			text: "Do you want to continue?",
 			icon: "warning",
 			confirmButtonText: "Yes, delete",
+			confirmButtonColor: "#164e63",
+			iconColor: "#164e63",
 			showCancelButton: true,
 			cancelButtonText: "Close",
 		});
