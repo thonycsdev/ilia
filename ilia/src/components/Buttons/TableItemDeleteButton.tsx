@@ -1,9 +1,31 @@
 import React from "react";
 import StantardButton from "./StantardButton";
+import Swal from "sweetalert2";
 
-function TableItemDeleteButton() {
+type TableItemDeleteButtonProps = {
+	onDelete: () => void;
+};
+
+function TableItemDeleteButton({ onDelete }: TableItemDeleteButtonProps) {
+	const handleUserClickedOnDelete = async () => {
+		const { isConfirmed } = await Swal.fire({
+			title: "Are you sure ?",
+			text: "Do you want to continue?",
+			icon: "warning",
+			confirmButtonText: "Yes, delete",
+			showCancelButton: true,
+			cancelButtonText: "Close",
+		});
+
+		if (isConfirmed) {
+			onDelete();
+		}
+	};
 	return (
-		<StantardButton className="hover:text-cyan-600">
+		<StantardButton
+			onClick={handleUserClickedOnDelete}
+			className="hover:text-cyan-600 hover:scale-125 transition-all duration-150"
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"

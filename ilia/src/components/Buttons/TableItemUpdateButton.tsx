@@ -3,7 +3,7 @@ import StantardButton from "./StantardButton";
 
 function TableItemUpdateButton() {
 	return (
-		<StantardButton className="hover:text-cyan-600">
+		<StantardButton className="hover:text-cyan-600 hover:scale-125 transition-all duration-150">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"

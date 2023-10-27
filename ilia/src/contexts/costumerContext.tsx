@@ -13,7 +13,7 @@ export type CostumerContextProps = {
 	costumers: Costumer[];
 	getSingleCostumer: (id: number) => Promise<Costumer>;
 	updateCostumer: (costumer: Costumer) => void;
-	deleteCostumer: (id: number) => void;
+	deleteCostumer: (id: number) => Promise<void>;
 	createCostumer: (costumer: Costumer) => Promise<void>;
 	isLoading: boolean;
 };
@@ -41,14 +41,6 @@ export const CostumerContextProvider = (
 	});
 	const { push } = useRouter();
 
-	const deleteMutation = useMutation({
-		mutationFn: deleteCostumer as MutationFunction,
-		mutationKey: ["costumer"],
-		onSuccess: () => {
-			queryClient.invalidateQueries(["costumer"]);
-		},
-	});
-
 	const updateMutation = useMutation({
 		mutationFn: updateCostumer as MutationFunction,
 		mutationKey: ["singleCostumer"],
@@ -65,7 +57,8 @@ export const CostumerContextProvider = (
 
 	const handleDeleteCustomer = async (id: number) => {
 		try {
-			await deleteMutation.mutate(id);
+			await deleteCostumer(id);
+			push("/costumers");
 		} catch (error) {
 			console.log(error);
 		}
