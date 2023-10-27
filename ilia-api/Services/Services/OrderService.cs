@@ -26,6 +26,7 @@ namespace Services.Services
                 throw new Exception();
 
             var entity = _mapper.Map<Order>(order);
+            entity.Products = order.ProductsIds.Select(id => new Product { Id = id, CreatedAt = DateTime.Now }).ToList();
             entity.CustomerId = order.CustomerId;
             entity.CreatedAt = DateTime.Now;
             await _orderRepository.Create(entity);
@@ -42,7 +43,7 @@ namespace Services.Services
 
         public async Task<IEnumerable<OrderResponse>> GetAllOrders()
         {
-            var results = await _orderRepository.GetAll(null);
+            var results = await _orderRepository.GetOrdersWithProducts(x => x.Id != null);
             return _mapper.Map<List<OrderResponse>>(results);
         }
 

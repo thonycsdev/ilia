@@ -15,7 +15,7 @@ namespace Infra.Data.Repositories
 
         public async Task<IEnumerable<Order>> GetOrdersWithProducts(Expression<Func<Order, bool>> expression)
         {
-            var result = await _dbContext.Set<Order>().Include(x => x.Products).Where(expression).ToListAsync();
+            var result = await _dbContext.Set<Order>().Include(x => x.Products).Include(x => x.Customer).Where(expression).ToListAsync();
             return result;
         }
     }

@@ -10,5 +10,6 @@ export type Order = {
 	id?: number;
 	createdAt: string | Date;
 	customerId: number;
+	customer?: Costumer;
 	productsIds: number[];
 };
