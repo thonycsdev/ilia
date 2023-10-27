@@ -22,6 +22,7 @@ function Table({ costumers }: TableProps) {
 					<th className="px-6 py-3 text-left text-sm font-bold text-slate-900 rounded-tr-md">
 						Created Date
 					</th>
+					<th className="px-6 py-3 text-left text-sm font-bold text-slate-900 rounded-tr-md"></th>
 				</tr>
 			</thead>
 			<tbody>
