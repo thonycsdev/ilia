@@ -10,7 +10,7 @@ type SideBarItemProps = {
 
 function SideBarItem({ route, onClick, icon, itemTitle }: SideBarItemProps) {
 	return (
-		<Link href={route ? route : "/costumers"}>
+		<Link href={route ? route : ""}>
 			<li
 				onClick={onClick ? onClick : () => console.log()}
 				className="flex justify-between p-5 items-center h-12 hover:shadow-2xl hover:bg-cyan-600 "

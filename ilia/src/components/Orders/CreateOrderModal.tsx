@@ -9,43 +9,26 @@ import {
 import React, { useContext } from "react";
 import StantardButton from "../Buttons/StantardButton";
 import { FieldValues, useForm } from "react-hook-form";
-import { Costumer } from "@/models/costumer";
 import { CostumerContext } from "@/contexts/costumerContext";
-import Toast from "../Toast/Toast";
 
-type CostumerCreateFormProps = {
+type CreateOrderModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
 };
 
-function CostumerCreateForm({ isOpen, onClose }: CostumerCreateFormProps) {
-	const today = new Date().toLocaleDateString();
-	const { createCostumer } = useContext(CostumerContext);
-
-	const handleSubmitForm = async (data: FieldValues) => {
-		const request = {
-			name: data.name,
-			email: data.email,
-			createdAt: new Date(today),
-		} as Costumer;
-		try {
-			await createCostumer(request);
-			const { successToast } = Toast();
-			successToast("Costumer was succesfully created");
-			onClose();
-		} catch (error) {
-			console.log(error);
-			throw new Error();
-		}
-	};
+function CreateOrderModal({ isOpen, onClose }: CreateOrderModalProps) {
+	const { costumers } = useContext(CostumerContext);
 	const { register, handleSubmit } = useForm();
+	const handleSubmitForm = (data: FieldValues) => {
+		console.log(data);
+	};
 	return (
 		<>
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader className="bg-cyan-700 text-white">
-						Create Costumer
+						Create Order
 					</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
@@ -55,7 +38,7 @@ function CostumerCreateForm({ isOpen, onClose }: CostumerCreateFormProps) {
 							className="flex flex-col h-64 items-center gap-2"
 						>
 							<div className="flex flex-col w-3/4">
-								<label className="font-bold text-sm py-3">Name:</label>
+								<label className="font-bold text-sm py-3">Cart:</label>
 								<input
 									{...register("name")}
 									aria-label="name-input"
@@ -64,13 +47,18 @@ function CostumerCreateForm({ isOpen, onClose }: CostumerCreateFormProps) {
 								/>
 							</div>
 							<div className="flex flex-col w-3/4">
-								<label className="font-bold text-sm py-3">Email:</label>
-								<input
-									type="text"
-									{...register("email")}
-									aria-label="email-input"
-									className="rounded-md bg-slate-200 h-8"
-								/>
+								<label className="font-bold text-sm py-3">Costumer:</label>
+								<select
+									className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+									id="grid-first-name"
+									{...register("customerId", { required: "This is required" })}
+								>
+									{costumers.map((customer) => (
+										<option key={customer.id} value={customer.id}>
+											{customer.name}
+										</option>
+									))}
+								</select>
 							</div>
 						</form>
 						<div className="flex justify-center gap-20">
@@ -87,4 +75,5 @@ function CostumerCreateForm({ isOpen, onClose }: CostumerCreateFormProps) {
 		</>
 	);
 }
-export default CostumerCreateForm;
+
+export default CreateOrderModal;

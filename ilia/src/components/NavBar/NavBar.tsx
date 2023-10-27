@@ -34,7 +34,7 @@ function NavBar(props: NavBarProps) {
 						Products
 					</Link>
 					<Link
-						href={"/order"}
+						href={"/orders"}
 						className="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10"
 					>
 						My Orders
