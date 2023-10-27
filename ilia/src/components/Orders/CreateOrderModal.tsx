@@ -34,7 +34,7 @@ function CreateOrderModal({
 			await addOrder({
 				customerId: data.customerId,
 				createdAt: new Date(),
-				productsIds: cartItens.map((item) => item.id),
+				products: cartItens.map((item) => item.id),
 			});
 			cartCleanUp();
 			onClose();

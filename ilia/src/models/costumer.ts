@@ -1,3 +1,5 @@
+import { Product } from "./product";
+
 export type Costumer = {
 	id: number;
 	createdAt: string | Date;
@@ -11,5 +13,5 @@ export type Order = {
 	createdAt: string | Date;
 	customerId: number;
 	customer?: Costumer;
-	productsIds: number[];
+	products: Product[];
 };

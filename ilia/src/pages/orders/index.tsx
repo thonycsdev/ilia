@@ -14,6 +14,7 @@ function Orders({
 	orders: Order[];
 }) {
 	const [isModalOpen, setIsOpen] = useState(false);
+	console.log({ orders });
 	return (
 		<div className="flex justify-between">
 			<CreateOrderModal
@@ -22,7 +23,7 @@ function Orders({
 				onClose={() => setIsOpen(false)}
 			/>
 			<OrderSideBar onCreateCostumerClick={() => setIsOpen(true)} />
-			<div className="flex justify-center bg-red-600 w-4/5 mx-auto">
+			<div className="mt-16 flex flex-col items-center gap-10 w-4/5 mx-auto">
 				{orders.map((order) => (
 					<>
 						<OrderCard order={order} />
