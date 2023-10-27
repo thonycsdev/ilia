@@ -5,6 +5,7 @@ type CartContextProps = {
 	cartItens: Product[];
 	addProductToCart: (product: Product) => void;
 	removeProductFromCartByProductId: (productId: number) => void;
+	cartCleanUp: () => void;
 };
 
 export const CartContext = createContext<CartContextProps>(
@@ -24,10 +25,18 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 	const removeProductFromCartByProductId = (productId: number) => {
 		setCartItens((old) => old.filter((product) => product.id != productId));
 	};
+	const cartCleanUp = () => {
+		setCartItens([]);
+	};
 
 	return (
 		<CartContext.Provider
-			value={{ cartItens, addProductToCart, removeProductFromCartByProductId }}
+			value={{
+				cartItens,
+				addProductToCart,
+				removeProductFromCartByProductId,
+				cartCleanUp,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

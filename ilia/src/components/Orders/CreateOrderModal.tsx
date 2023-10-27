@@ -12,6 +12,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { CartContext } from "@/contexts/cartContext";
 import CartItemLabel from "../Cart/CartItemLabel";
 import { Costumer } from "@/models/costumer";
+import Toast from "../Toast/Toast";
 
 type CreateOrderModalProps = {
 	isOpen: boolean;
@@ -24,10 +25,14 @@ function CreateOrderModal({
 	onClose,
 	costumers,
 }: CreateOrderModalProps) {
-	const { cartItens } = useContext(CartContext);
+	const { cartItens, cartCleanUp } = useContext(CartContext);
 	const { register, handleSubmit } = useForm();
 	const handleSubmitForm = (data: FieldValues) => {
 		console.log(data);
+		cartCleanUp();
+		onClose();
+		const { successToast } = Toast();
+		successToast("Order Received!");
 	};
 	return (
 		<>
