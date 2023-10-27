@@ -4,9 +4,13 @@ import Swal from "sweetalert2";
 
 type TableItemDeleteButtonProps = {
 	onDelete: () => void;
+	classname?: string;
 };
 
-function TableItemDeleteButton({ onDelete }: TableItemDeleteButtonProps) {
+function TableItemDeleteButton({
+	onDelete,
+	classname,
+}: TableItemDeleteButtonProps) {
 	const handleUserClickedOnDelete = async () => {
 		const { isConfirmed } = await Swal.fire({
 			title: "Are you sure ?",
@@ -26,7 +30,11 @@ function TableItemDeleteButton({ onDelete }: TableItemDeleteButtonProps) {
 	return (
 		<StantardButton
 			onClick={handleUserClickedOnDelete}
-			className="hover:text-cyan-600 hover:scale-125 transition-all duration-150"
+			className={
+				classname
+					? classname
+					: "hover:text-cyan-600 hover:scale-125 transition-all duration-150"
+			}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

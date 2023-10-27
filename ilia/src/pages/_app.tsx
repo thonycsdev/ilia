@@ -9,6 +9,7 @@ import { QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import { CartContextProvider } from "@/contexts/cartContext";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
@@ -17,21 +18,23 @@ export default function App({ Component, pageProps }: AppProps) {
 				<CostumerContextProvider>
 					<OrderContextProvider>
 						<ProductContextProvider>
-							<NavBar>
-								<Component {...pageProps} />
-							</NavBar>
-							<ToastContainer
-								position="bottom-right"
-								autoClose={5000}
-								hideProgressBar={false}
-								newestOnTop={false}
-								closeOnClick
-								rtl={false}
-								pauseOnFocusLoss
-								draggable
-								pauseOnHover
-								theme="dark"
-							/>
+							<CartContextProvider>
+								<NavBar>
+									<Component {...pageProps} />
+								</NavBar>
+								<ToastContainer
+									position="bottom-right"
+									autoClose={5000}
+									hideProgressBar={false}
+									newestOnTop={false}
+									closeOnClick
+									rtl={false}
+									pauseOnFocusLoss
+									draggable
+									pauseOnHover
+									theme="dark"
+								/>
+							</CartContextProvider>
 						</ProductContextProvider>
 					</OrderContextProvider>
 				</CostumerContextProvider>

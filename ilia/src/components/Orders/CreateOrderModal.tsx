@@ -9,15 +9,22 @@ import {
 import React, { useContext } from "react";
 import StantardButton from "../Buttons/StantardButton";
 import { FieldValues, useForm } from "react-hook-form";
-import { CostumerContext } from "@/contexts/costumerContext";
+import { CartContext } from "@/contexts/cartContext";
+import CartItemLabel from "../Cart/CartItemLabel";
+import { Costumer } from "@/models/costumer";
 
 type CreateOrderModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
+	costumers: Costumer[];
 };
 
-function CreateOrderModal({ isOpen, onClose }: CreateOrderModalProps) {
-	const { costumers } = useContext(CostumerContext);
+function CreateOrderModal({
+	isOpen,
+	onClose,
+	costumers,
+}: CreateOrderModalProps) {
+	const { cartItens } = useContext(CartContext);
 	const { register, handleSubmit } = useForm();
 	const handleSubmitForm = (data: FieldValues) => {
 		console.log(data);
@@ -26,26 +33,29 @@ function CreateOrderModal({ isOpen, onClose }: CreateOrderModalProps) {
 		<>
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
 				<ModalOverlay />
-				<ModalContent>
+				<ModalContent maxW={1200}>
 					<ModalHeader className="bg-cyan-700 text-white">
 						Create Order
 					</ModalHeader>
 					<ModalCloseButton />
-					<ModalBody>
+					<ModalBody w={1200} className="flex flex-col items-center ">
+						<div className="flex flex-col max-h-80">
+							<label className="font-bold text-sm py-3">Cart Itens:</label>
+							{cartItens.length <= 0 ? (
+								<span>Cart Empty</span>
+							) : (
+								<div className="p-5 flex flex-col gap-5 overflow-scroll overflow-x-hidden ">
+									{cartItens.map((item) => (
+										<CartItemLabel product={item} />
+									))}
+								</div>
+							)}
+						</div>
 						<form
 							id="form"
 							onSubmit={handleSubmit(handleSubmitForm)}
-							className="flex flex-col h-64 items-center gap-2"
+							className="flex flex-col items-center w-full h-1/4"
 						>
-							<div className="flex flex-col w-3/4">
-								<label className="font-bold text-sm py-3">Cart:</label>
-								<input
-									{...register("name")}
-									aria-label="name-input"
-									type="text"
-									className="rounded-md bg-slate-200 h-8"
-								/>
-							</div>
 							<div className="flex flex-col w-3/4">
 								<label className="font-bold text-sm py-3">Costumer:</label>
 								<select
