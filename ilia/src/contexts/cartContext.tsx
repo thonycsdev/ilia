@@ -1,7 +1,7 @@
 import { Product } from "@/models/product";
 import { ReactNode, createContext, useState } from "react";
 
-type CartContextProps = {
+export type CartContextProps = {
 	cartItens: Product[];
 	addProductToCart: (product: Product) => void;
 	removeProductFromCartByProductId: (productId: number) => void;

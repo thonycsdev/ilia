@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useContext } from "react";
 import StantardButton from "../Buttons/StantardButton";
 import { CartContext } from "@/contexts/cartContext";
+import { formatCurrency } from "@/functions/formatCurrency";
 
 type ProductCardProps = {
 	product: Product;
@@ -24,7 +25,7 @@ function ProductCard(props: ProductCardProps) {
 					/>
 				</div>
 				<div className="text-center">{product.title}</div>
-				<div>R$: {product.price}</div>
+				<div>{formatCurrency(product.price)}</div>
 				<div>Stars: {product.rating.rate}</div>
 				<StantardButton onClick={() => addProductToCart(product)}>
 					Add to Cart
