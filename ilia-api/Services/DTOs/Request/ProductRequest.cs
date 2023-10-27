@@ -1,12 +1,16 @@
-namespace Services.Entities
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Services.DTOs.Request
 {
-    public class Product : BaseEntity
+    public class ProductRequest
     {
         public string Title { get; set; }
         public float Price { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
         public float Rating { get; set; }
-        public List<Order> Orders { get; set; }
     }
 }

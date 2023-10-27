@@ -34,7 +34,7 @@ function CreateOrderModal({
 			await addOrder({
 				customerId: data.customerId,
 				createdAt: new Date(),
-				products: cartItens.map((item) => item.id),
+				products: cartItens,
 			});
 			cartCleanUp();
 			onClose();
@@ -43,7 +43,6 @@ function CreateOrderModal({
 		} catch (error) {
 			console.log(error);
 		}
-		console.log(data);
 	};
 	return (
 		<>

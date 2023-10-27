@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.Query;
 using Services.DTOs.Request;
 using Services.DTOs.Response;
 using Services.Entities;
@@ -14,11 +15,13 @@ namespace Services.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
-        public OrderService(IOrderRepository orderRepository, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IMapper mapper, IProductRepository productRepository)
         {
             _mapper = mapper;
             _orderRepository = orderRepository;
+            _productRepository = productRepository;
         }
         public async Task<OrderResponse> CreateOrder(OrderRequest order)
         {
@@ -26,7 +29,7 @@ namespace Services.Services
                 throw new Exception();
 
             var entity = _mapper.Map<Order>(order);
-            entity.Products = order.ProductsIds.Select(id => new Product { Id = id, CreatedAt = DateTime.Now }).ToList();
+
             entity.CustomerId = order.CustomerId;
             entity.CreatedAt = DateTime.Now;
             await _orderRepository.Create(entity);

@@ -10,6 +10,6 @@ namespace Services.DTOs.Request
     public class OrderRequest
     {
         public int CustomerId { get; set; }
-        public List<int> ProductsIds { get; set; }
+        public List<ProductRequest> Products { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Infra.Data.Repositories;
+using Infra.Data.Repositories.Repositories;
 using Services.Interfaces.Repositories;
 using Services.Interfaces.Services;
 using Services.Services;
@@ -13,6 +14,7 @@ namespace ilia_api
             services.AddScoped<ICustomerService, CustomerServices>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

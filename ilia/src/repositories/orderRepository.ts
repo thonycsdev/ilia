@@ -8,7 +8,14 @@ export default function orderRepository() {
 		rejectUnauthorized: false, // This allows self-signed certificates
 	});
 	function createOrder(order: Order) {
-		return axios.post(constantsApi.ApiKey + "/Order", order);
+		const payload = {
+			...order,
+			products: order.products.map((product) => ({
+				...product,
+				rating: product.rating.rate,
+			})),
+		};
+		return axios.post(constantsApi.ApiKey + "/Order", payload);
 	}
 	function getAllOrders() {
 		const response = axios.get(constantsApi.ApiKey + "/getAllOrders", {

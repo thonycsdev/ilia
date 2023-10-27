@@ -34,7 +34,7 @@ function OrderCard(props: OrderCardProps) {
 					<tbody>
 						<tr>
 							<td className="px-6 ">{order.customer?.name}</td>
-							<td className="px-6 ">{order.customer?.orders.length}</td>
+							<td className="px-6 ">{order.products.length}</td>
 							<td className="px-6 ">{1234}</td>
 						</tr>
 					</tbody>
