@@ -15,21 +15,23 @@ function TableItem({ costumer }: TableItemProps) {
 		await deleteCostumer(costumer.id);
 	};
 	return (
-		<tr className="odd:bg-white even:bg-slate-50">
-			<td className="px-6 py-4 text-sm font-medium text-slate-900">
-				{costumer.name}
-			</td>
-			<td className="px-6 py-4 text-sm text-slate-900">
-				{costumer.orders.length}
-			</td>
-			<td className="px-6 py-4 text-sm text-slate-900">
-				{formatDateToBrazilFormat(new Date(costumer.createdAt))}
-			</td>
-			<td className="text-sm text-slate-900 flex gap-11 mt-3">
-				<TableItemDeleteButton onDelete={handleDelete} />
-				<TableItemUpdateButton />
-			</td>
-		</tr>
+		<>
+			<tr className="odd:bg-white even:bg-slate-50">
+				<td className="px-6 py-4 text-sm font-medium text-slate-900">
+					{costumer.name}
+				</td>
+				<td className="px-6 py-4 text-sm text-slate-900">
+					{costumer.orders.length}
+				</td>
+				<td className="px-6 py-4 text-sm text-slate-900">
+					{formatDateToBrazilFormat(new Date(costumer.createdAt))}
+				</td>
+				<td className="text-sm text-slate-900 flex gap-11 mt-3">
+					<TableItemDeleteButton onDelete={handleDelete} />
+					<TableItemUpdateButton costumer={costumer} />
+				</td>
+			</tr>
+		</>
 	);
 }
 

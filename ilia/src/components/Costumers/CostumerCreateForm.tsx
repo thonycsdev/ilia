@@ -31,6 +31,7 @@ function CostumerCreateForm({ isOpen, onClose }: CostumerCreateFormProps) {
 			await createCostumer(request);
 			const { successToast } = Toast();
 			successToast("Costumer was succesfully created");
+			onClose();
 		} catch (error) {
 			console.log(error);
 			throw new Error();
