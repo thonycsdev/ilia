@@ -27,9 +27,21 @@ namespace Services.Services
         {
             if (order.CustomerId <= 0)
                 throw new Exception();
+            var productsEntity = new List<Product>();
+            foreach (var item in order.Products)
+            {
+                var result = await _productRepository.GetSingleOrDefault(x => x.Id == item.Id);
+                if (result is not null)
+                {
+                    productsEntity.Add(result);
+                    continue;
+                }
+                var newEntity = await _productRepository.Create(_mapper.Map<Product>(item));
+                productsEntity.Add(newEntity);
 
-            var entity = _mapper.Map<Order>(order);
-
+            }
+            var entity = new Order();
+            entity.Products = productsEntity;
             entity.CustomerId = order.CustomerId;
             entity.CreatedAt = DateTime.Now;
             await _orderRepository.Create(entity);
