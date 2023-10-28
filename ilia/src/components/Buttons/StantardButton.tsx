@@ -11,7 +11,7 @@ function StantardButton({ children, ...props }: unionProps) {
 			className={
 				className
 					? className
-					: "p-2 px-10 bg-cyan-600 text-white rounded-md hover:bg-cyan-500"
+					: "p-2 px-10 bg-cyan-600 text-white rounded-md hover:bg-cyan-500 disabled:bg-gray-500"
 			}
 			{...props}
 		>

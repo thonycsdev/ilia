@@ -1,5 +1,4 @@
 import { Product } from "@/models/product";
-import Image from "next/image";
 import React, { useContext } from "react";
 import StantardButton from "../Buttons/StantardButton";
 import { CartContext } from "@/contexts/cartContext";
@@ -14,22 +13,34 @@ function ProductCard(props: ProductCardProps) {
 	const { product } = props;
 	return (
 		<>
-			<div className="m-5 w-60 h-60 rounded-2xl bg-gradient-to-t from-cyan-700 bg-transparent flex flex-col items-center ">
-				<div className="w-16 h-16 overflow-hidden hover:scale-150 transition-all duration-150 hover:overflow-visible">
-					<Image
-						src={product.image}
-						alt={product.title}
-						width={50}
-						height={50}
-						className="rounded-sm bg-transparent bg-blend-multiply "
-					/>
+			<div className="max-w-sm h-2/4  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+				<div className="bg-white rounded-lg m-7">
+					<div className="h-96 w-96">
+						<img
+							className="w-5/6 h-5/6 p-8 object-fit"
+							src={product.image}
+							alt="product image"
+						/>
+					</div>
 				</div>
-				<div className="text-center">{product.title}</div>
-				<div>{formatCurrency(product.price)}</div>
-				<div>Stars: {product.rating.rate}</div>
-				<StantardButton onClick={() => addProductToCart(product)}>
-					Add to Cart
-				</StantardButton>
+				<div className="px-5 pb-5">
+					<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white overflow-hidden">
+						{product.title}
+					</h5>
+					<div className="flex items-center mt-2.5 mb-5">
+						<span className="bg-blue-100 whitespace-break-spaces text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+							{product.rating.rate}
+						</span>
+					</div>
+					<div className="flex items-center justify-between">
+						<span className="text-3xl font-bold text-gray-900 dark:text-white">
+							{formatCurrency(product.price)}
+						</span>
+						<StantardButton onClick={() => addProductToCart(product)}>
+							Add to Cart
+						</StantardButton>
+					</div>
+				</div>
 			</div>
 		</>
 	);

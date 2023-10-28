@@ -25,8 +25,8 @@ function Create2OrdersMockWithProductsMocked(product: Product[]): Order[] {
 		.map((order) => ({ ...order, id: order.id++ }));
 }
 
-function Create2ProductsMocks(): Product[] {
+export function Create2ProductsMocks(): Product[] {
 	return Array(2)
 		.fill({ id: 0, title: "product" })
-		.map((product) => ({ ...product, id: product.id++ }));
+		.map((product) => ({ ...product, id: product.id++, price: 2 }));
 }
