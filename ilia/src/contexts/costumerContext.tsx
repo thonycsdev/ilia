@@ -1,16 +1,13 @@
 import costumerRepository from "@/repositories/customerRepository";
 import { Costumer } from "@/models/costumer";
 import { ReactNode, createContext } from "react";
-import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 
 export type CostumerContextProps = {
-	costumers: Costumer[];
 	getSingleCostumer: (id: number) => Promise<Costumer>;
 	updateCostumer: (costumer: Costumer) => Promise<void>;
 	deleteCostumer: (id: number) => Promise<void>;
 	createCostumer: (costumer: Costumer) => Promise<void>;
-	isLoading: boolean;
 };
 
 export const CostumerContext = createContext({} as CostumerContextProps);
@@ -22,18 +19,9 @@ type CostumerContextProviderProps = {
 export const CostumerContextProvider = (
 	props: CostumerContextProviderProps
 ) => {
-	const {
-		createCostumer,
-		deleteCostumer,
-		updateCostumer,
-		getAllCostumers,
-		getSingleCostumer,
-	} = costumerRepository();
+	const { createCostumer, deleteCostumer, updateCostumer, getSingleCostumer } =
+		costumerRepository();
 
-	const { data, isSuccess } = useQuery({
-		queryFn: getAllCostumers,
-		queryKey: ["costumer"],
-	});
 	const { push } = useRouter();
 
 	const handleCreateCustomer = async (costumer: Costumer) => {
@@ -63,12 +51,10 @@ export const CostumerContextProvider = (
 	return (
 		<CostumerContext.Provider
 			value={{
-				costumers: data,
 				getSingleCostumer,
 				createCostumer: handleCreateCustomer,
 				deleteCostumer: handleDeleteCustomer,
 				updateCostumer: handleUpdateCustomer,
-				isLoading: isSuccess,
 			}}
 		>
 			{children}
