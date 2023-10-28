@@ -18,5 +18,10 @@ namespace Infra.Data.Repositories
             var result = await _dbContext.Set<Order>().Include(x => x.Products).Include(x => x.Customer).Where(expression).ToListAsync();
             return result;
         }
+        public async Task<Order> GetSingleOrderWithProductsAndCustomers(Expression<Func<Order, bool>> expression)
+        {
+            var result = await _dbContext.Set<Order>().Include(x => x.Products).Include(x => x.Customer).Where(expression).FirstOrDefaultAsync();
+            return result;
+        }
     }
 }

@@ -24,7 +24,6 @@ export default function orderRepository() {
 		return response.then((data) => data.data);
 	}
 	async function deleteOrder(orderId: number) {
-		console.log(orderId);
 		await axios.delete(constantsApi.ApiKey + "/Order", {
 			params: {
 				orderId,

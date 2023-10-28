@@ -1,4 +1,5 @@
 import { formatCurrency } from "@/functions/formatCurrency";
+import sumTotalCartPrice from "@/functions/sumTotalCartPrice";
 import { Product } from "@/models/product";
 import React from "react";
 
@@ -7,9 +8,7 @@ type CartQuickAcessIconProps = {
 };
 
 function CartQuickAcessIcon({ cartItens }: CartQuickAcessIconProps) {
-	const totalCartCost = cartItens.reduce((accumulator, product) => {
-		return accumulator + product.price;
-	}, 0);
+	const totalCartCost = sumTotalCartPrice(cartItens);
 	return (
 		<>
 			<div className="flex flex-col gap-10 pt-10">

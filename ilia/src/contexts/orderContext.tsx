@@ -1,5 +1,6 @@
 import { Order } from "@/models/costumer";
 import orderRepository from "@/repositories/orderRepository";
+import { useRouter } from "next/router";
 import { ReactNode, createContext } from "react";
 
 type OrderContextProps = {
@@ -18,6 +19,7 @@ type OrderContextProviderProps = {
 
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
+	const router = useRouter();
 	const { deleteOrder, createOrder, getAllOrders, getSingleOrder } =
 		orderRepository();
 
@@ -25,7 +27,12 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 		await createOrder(order);
 	};
 	const removeOrder = async (orderId: number) => {
-		await deleteOrder(orderId);
+		try {
+			await deleteOrder(orderId);
+			router.push("/orders");
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	const updateOrder = () => {};
 	return (

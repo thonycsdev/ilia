@@ -64,7 +64,7 @@ namespace Services.Services
 
         public async Task<OrderResponse> GetOrderById(int id)
         {
-            var results = await _orderRepository.GetSingleOrDefault(x => x.Id == id);
+            var results = await _orderRepository.GetSingleOrderWithProductsAndCustomers(x => x.Id == id);
             return _mapper.Map<OrderResponse>(results);
         }
 

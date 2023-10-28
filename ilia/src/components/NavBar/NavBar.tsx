@@ -1,11 +1,21 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
+
+const routesInApplication = {
+	home: "/",
+	orders: "/orders",
+	products: "/products",
+	costumers: "/costumers",
+};
 
 type NavBarProps = {
 	children: ReactNode;
 };
 function NavBar(props: NavBarProps) {
 	const { children } = props;
+	const router = useRouter();
+	// console.log(router.pathname);
 	return (
 		<>
 			<nav className="flex items-center justify-between p-6 container mx-auto">
@@ -17,25 +27,41 @@ function NavBar(props: NavBarProps) {
 				<div className="text-base text-gray-900 hidden lg:flex">
 					<Link
 						href="/"
-						className="block font-bold mt-4 lg:inline-block text-cyan-600 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.home
+								? "text-cyan-600"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Home
 					</Link>
 					<Link
 						href="/costumers"
-						className="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.costumers
+								? "text-cyan-600"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Costumers
 					</Link>
 					<Link
 						href={"/products"}
-						className="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.products
+								? "text-cyan-600"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Products
 					</Link>
 					<Link
 						href={"/orders"}
-						className="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.orders
+								? "text-cyan-600"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						My Orders
 					</Link>
