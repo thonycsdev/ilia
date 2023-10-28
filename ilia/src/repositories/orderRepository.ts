@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function orderRepository() {
 	const agent = new https.Agent({
-		rejectUnauthorized: false, // This allows self-signed certificates
+		rejectUnauthorized: false, // This allows self signed certificates
 	});
 	function createOrder(order: Order) {
 		const payload = {
@@ -23,6 +23,14 @@ export default function orderRepository() {
 		});
 		return response.then((data) => data.data);
 	}
+	async function deleteOrder(orderId: number) {
+		console.log(orderId);
+		await axios.delete(constantsApi.ApiKey + "/Order", {
+			params: {
+				orderId,
+			},
+		});
+	}
 
 	function getSingleOrder(orderId: number) {
 		const response = axios.get(constantsApi.ApiKey + "/Order", {
@@ -31,5 +39,5 @@ export default function orderRepository() {
 		return response.then((result) => result.data);
 	}
 
-	return { createOrder, getAllOrders, getSingleOrder };
+	return { createOrder, getAllOrders, getSingleOrder, deleteOrder };
 }

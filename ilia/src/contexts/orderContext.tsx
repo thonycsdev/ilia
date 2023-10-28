@@ -6,7 +6,7 @@ type OrderContextProps = {
 	getAllOrders: () => void;
 	getSingleOrder: (id: number) => Promise<Order>;
 	updateOrder: (id: number) => void;
-	deleteOrder: (id: number) => void;
+	deleteOrder: (id: number) => Promise<void>;
 	addOrder: (costumer: Order) => Promise<void>;
 };
 
@@ -18,12 +18,15 @@ type OrderContextProviderProps = {
 
 export const OrderContextProvider = (props: OrderContextProviderProps) => {
 	const { children } = props;
-	const { createOrder, getAllOrders, getSingleOrder } = orderRepository();
+	const { deleteOrder, createOrder, getAllOrders, getSingleOrder } =
+		orderRepository();
 
 	const addOrder = async (order: Order) => {
 		await createOrder(order);
 	};
-	const deleteOrder = () => {};
+	const removeOrder = async (orderId: number) => {
+		await deleteOrder(orderId);
+	};
 	const updateOrder = () => {};
 	return (
 		<OrderContext.Provider
@@ -31,7 +34,7 @@ export const OrderContextProvider = (props: OrderContextProviderProps) => {
 				getSingleOrder,
 				getAllOrders,
 				addOrder,
-				deleteOrder,
+				deleteOrder: removeOrder,
 				updateOrder,
 			}}
 		>

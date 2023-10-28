@@ -43,16 +43,16 @@ namespace ilia_api.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<OrderResponse>> DeleteOrder(int id)
+        public async Task<ActionResult<OrderResponse>> DeleteOrder(int orderId)
         {
-            await _orderService.DeleteOrder(id);
+            await _orderService.DeleteOrder(orderId);
             return Ok();
         }
-        [HttpPut]
-        public async Task<ActionResult<OrderResponse>> GetAll(int id, OrderRequest viewModel)
-        {
-            var result = await _orderService.UpdateOrder(viewModel, id);
-            return Ok(result);
-        }
+        // [HttpPut]
+        // public async Task<ActionResult<OrderResponse>> UpdateOrder(int id, OrderRequest viewModel)
+        // {
+        //     var result = await _orderService.UpdateOrder(viewModel, id);
+        //     return Ok(result);
+        // }
     }
 }
