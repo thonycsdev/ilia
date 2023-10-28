@@ -1,8 +1,21 @@
 import "@testing-library/jest-dom";
-import { apiMock } from "./mocks/api";
+// import { server } from "./mocks/api";
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 jest.mock("react-query");
 
-beforeAll(() => apiMock.listen());
-afterEach(() => apiMock.resetHandlers());
-afterAll(() => apiMock.close());
+// tentei configurar o msw porem tive uns erros que nao conseguir identificar no momento. Vou continuar com outras features, mockando com o jest
+// beforeAll(() => {
+// 	// Start the interception.
+// 	server.listen();
+// });
+
+// afterEach(() => {
+// 	// Remove any handlers you may have added
+// 	// in individual tests (runtime handlers).
+// 	server.resetHandlers();
+// });
+
+// afterAll(() => {
+// 	// Disable request interception and clean up.
+// 	server.close();
+// });

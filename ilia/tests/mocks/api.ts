@@ -1,3 +1,3 @@
-import { setupServer } from "msw/node";
 import { handlers } from "./handlers";
-export const apiMock = setupServer(...handlers);
+import { setupServer } from "msw/node";
+export const server = setupServer(...handlers);
