@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { createCostumerArray } from "../../mockData/mockCostumers";
+import { createCostumerArray } from "../../mocks/mockCostumers";
 import TableItem from "@/components/Table/TableItem";
 
 describe("Table Item Tests", () => {

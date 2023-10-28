@@ -49,6 +49,7 @@
 		"eslint-plugin-react": "^7.33.2",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
+		"msw": "^2.0.1",
 		"postcss": "latest",
 		"tailwindcss": "latest",
 		"ts-jest": "^29.1.1",

@@ -45,9 +45,9 @@ export default function Home({ response }: HomeProps) {
 					<div className="lg:w-5/6 lg:max-w-lg xl:mt-0 w-full mt-12">
 						<div className="relative">
 							<img
-								src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=1999&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+								src="https://ilia.digital/wp-content/uploads/2022/11/Logo.png"
 								alt="themeptation"
-								className="relative z-10 transform rotate-6 shadow-2xl"
+								className="relative z-10 transform rotate-6"
 							/>
 							<div className="absolute -top-10 -left-24 w-full h-full bg-cyan-900 transform -rotate-6"></div>
 						</div>

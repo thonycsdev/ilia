@@ -5,7 +5,7 @@ import {
 } from "@/contexts/costumerContext";
 import { Costumer } from "@/models/costumer";
 import { cleanup, render, screen } from "@testing-library/react";
-import { createCostumerArray } from "../mockData/mockCostumers";
+import { createCostumerArray } from "../mocks/mockCostumers";
 
 describe("Costumers Home Page Test", () => {
 	const ctxValues = {} as CostumerContextProps;

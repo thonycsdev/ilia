@@ -1,6 +1,6 @@
 import Card from "@/components/Cards/Card";
 import { cleanup, render, screen } from "@testing-library/react";
-import { createCostumerArray } from "../../mockData/mockCostumers";
+import { createCostumerArray } from "../../mocks/mockCostumers";
 
 describe("Single Card tests", () => {
 	render(<Card costumer={createCostumerArray(1)[0]} />);
