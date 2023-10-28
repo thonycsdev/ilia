@@ -8,28 +8,21 @@ import { ProductContext } from "@/contexts/productContext";
 import { Costumer } from "@/models/costumer";
 import { Product } from "@/models/product";
 import costumerRepository from "@/repositories/customerRepository";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 function Products({ costumers }: { costumers: Costumer[] }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const { products } = useContext(ProductContext);
 	const { cartItens } = useContext(CartContext);
-	const [productsFiltered, setProductsFiltered] = useState<Product[]>(products);
-	const handleSearchTerm = (searchTerm: string) => {
-		if (searchTerm === "") {
-			return products;
-		}
-		setProductsFiltered(() => {
-			const result = products.filter((product) => {
-				const title = product.title.toLocaleLowerCase();
-				return title.includes(searchTerm.toLocaleLowerCase());
-			});
-			return result;
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const filterProducts = (products: Product[]) => {
+		return products.filter((order) => {
+			const name = order.title.toLocaleLowerCase();
+			return name.includes(searchTerm.toLocaleLowerCase());
 		});
 	};
-	useEffect(() => {
-		setProductsFiltered(products);
-	}, products);
+
 	return (
 		<>
 			<CreateOrderModal
@@ -48,10 +41,10 @@ function Products({ costumers }: { costumers: Costumer[] }) {
 					</StantardButton>
 				</div>
 			</div>
-			<Filter onUserTyping={handleSearchTerm} />
+			<Filter onUserTyping={(s) => setSearchTerm(s)} />
 
 			<div className="w-screen h-full flex justify-center items-center flex-wrap gap-7 pt-12">
-				{productsFiltered.map((product) => (
+				{filterProducts(products).map((product) => (
 					<ProductCard product={product} key={product.id} />
 				))}
 			</div>

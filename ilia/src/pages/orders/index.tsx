@@ -1,4 +1,5 @@
 import OrderCard from "@/components/Cards/OrderCard";
+import Filter from "@/components/Filter/Filter";
 import CreateOrderModal from "@/components/Orders/CreateOrderModal";
 import OrderSideBar from "@/components/SideBar/OrderSideBar";
 import { Costumer, Order } from "@/models/costumer";
@@ -14,7 +15,15 @@ function Orders({
 	orders: Order[];
 }) {
 	const [isModalOpen, setIsOpen] = useState(false);
-	console.log({ orders });
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const filterOrders = (products: Order[]) => {
+		return products.filter((order) => {
+			const name = order.customer!.name.toLocaleLowerCase();
+			return name.includes(searchTerm.toLocaleLowerCase());
+		});
+	};
+
 	return (
 		<div className="flex justify-between">
 			<CreateOrderModal
@@ -23,12 +32,15 @@ function Orders({
 				onClose={() => setIsOpen(false)}
 			/>
 			<OrderSideBar onCreateCostumerClick={() => setIsOpen(true)} />
-			<div className="mt-16 flex flex-col items-center gap-10 w-4/5 mx-auto">
-				{orders.map((order) => (
-					<>
-						<OrderCard order={order} />
-					</>
-				))}
+			<div className="w-full">
+				<Filter onUserTyping={(e) => setSearchTerm(e)} />
+				<div className="mt-16 flex flex-col  items-center gap-10 w-4/5 mx-auto">
+					{filterOrders(orders).map((order) => (
+						<>
+							<OrderCard order={order} />
+						</>
+					))}
+				</div>
 			</div>
 		</div>
 	);

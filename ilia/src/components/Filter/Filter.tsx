@@ -16,8 +16,8 @@ function Filter({ onUserTyping }: FilterProps) {
 			setIsDisable(true);
 			return;
 		}
-		onUserTyping(userInput);
 	}, [userInput]);
+	onUserTyping(userInput);
 	return (
 		<div className="w-full flex justify-center pt-20 gap-10">
 			<input
