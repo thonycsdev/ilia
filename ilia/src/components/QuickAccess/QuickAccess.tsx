@@ -1,5 +1,6 @@
 import React from "react";
 import QuickAccessItem from "./QuickAccessItem";
+import Link from "next/link";
 
 type QuickAccessProps = {
 	costumersLength: number;
@@ -12,8 +13,12 @@ function QuickAccess({
 }: QuickAccessProps) {
 	return (
 		<div className="flex justify-center w-9/12  m-auto gap-4">
-			<QuickAccessItem itemName="Total Costumers" value={costumersLength} />
-			<QuickAccessItem itemName="Total Orders" value={ordersLength} />
+			<Link href={"/costumers"}>
+				<QuickAccessItem itemName="Total Costumers" value={costumersLength} />
+			</Link>
+			<Link href={"/orders"}>
+				<QuickAccessItem itemName="Total Orders" value={ordersLength} />
+			</Link>
 		</div>
 	);
 }

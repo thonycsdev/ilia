@@ -1,6 +1,6 @@
 import StandardButton from "@/components/Buttons/StandardButton";
 import ProductCard from "@/components/Cards/ProductCard";
-import CartQuickAcessIcon from "@/components/Cart/CartQuickAcessIcon";
+import CartQuickAccessIcon from "@/components/Cart/CartQuickAcessIcon";
 import Filter from "@/components/Filter/Filter";
 import CreateOrderModal from "@/components/Orders/CreateOrderModal";
 import { CartContext } from "@/contexts/cartContext";
@@ -31,7 +31,7 @@ function Products({ costumers }: { costumers: Costumer[] }) {
 				onClose={() => setIsOpen(false)}
 			/>
 			<div className="flex gap-10 ml-10">
-				<CartQuickAcessIcon cartItems={cartItems} />
+				<CartQuickAccessIcon cartItems={cartItems} />
 				<div className="pt-10 font-bold text-lg">
 					<StandardButton
 						onClick={() => setIsOpen(true)}

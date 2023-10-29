@@ -62,7 +62,7 @@ export default function Home({ response }: HomeProps) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const { getAllCostumers } = costumerRepository();
 	const { getAllOrders } = orderRepository();
 	const orders = await getAllOrders();
