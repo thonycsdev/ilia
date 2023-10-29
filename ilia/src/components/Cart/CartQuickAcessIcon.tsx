@@ -13,7 +13,11 @@ function CartQuickAccessIcon({ cartItems }: CartQuickAccessIconProps) {
 	const totalCartCost = sumTotalCartPrice(cartItems);
 	return (
 		<>
-			<QuickCartModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+			<QuickCartModal
+				cartItems={cartItems}
+				isOpen={isOpen}
+				onClose={() => setIsOpen(false)}
+			/>
 			<div className="flex flex-col gap-10 pt-10 ">
 				<div
 					className="p-2 px-10 bg-cyan-600 text-white rounded-md font-bold text-lg flex gap-4 justify-center hover:cursor-pointer hover:bg-cyan-500"

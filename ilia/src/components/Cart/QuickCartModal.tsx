@@ -10,14 +10,16 @@ import React, { useContext } from "react";
 import StandardButton from "../Buttons/StandardButton";
 import CartItemLabel from "./CartItemLabel";
 import { CartContext } from "@/contexts/cartContext";
+import { Product } from "@/models/product";
 
 type QuickCartModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
+	cartItems: Product[];
 };
 
-function QuickCartModal({ isOpen, onClose }: QuickCartModalProps) {
-	const { cartItems: cartItems, cartCleanUp } = useContext(CartContext);
+function QuickCartModal({ isOpen, onClose, cartItems }: QuickCartModalProps) {
+	const { cartCleanUp } = useContext(CartContext);
 	const isCartEmpty = cartItems.length <= 0;
 	return (
 		<>
