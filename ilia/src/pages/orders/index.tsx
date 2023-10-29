@@ -41,6 +41,7 @@ function Orders({
 					{filterOrders(orders).map((order) => (
 						<>
 							<OrderCard
+								key={order.id}
 								order={order}
 								costumer={
 									costumers.find(

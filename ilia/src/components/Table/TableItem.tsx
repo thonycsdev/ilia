@@ -24,7 +24,7 @@ function TableItem({ costumer }: TableItemProps) {
 					{costumer.orders!.length}
 				</td>
 				<td className="px-6 py-4 text-sm text-slate-900">
-					{formatDateToBrazilFormat(costumer.createdAt!)}
+					{formatDateToBrazilFormat(new Date(costumer.createdAt!))}
 				</td>
 				<td className="text-sm text-slate-900 flex gap-11 mt-3">
 					<TableItemDeleteButton onDelete={handleDelete} />
