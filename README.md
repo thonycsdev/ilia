@@ -24,7 +24,7 @@ After creating orders and associating them with customers, you can return to the
 
 ## Configuring the API in ASP.NET Core
 
-### This API Requires Dotnet Version 7 Only
+### This API Requires Dotnet Version 6 Only
 ### https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-2204
 
 1. Navigate to the directory of the API:
