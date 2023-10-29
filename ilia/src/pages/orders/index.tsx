@@ -39,17 +39,13 @@ function Orders({
 				<Filter onUserTyping={(e) => setSearchTerm(e)} />
 				<div className="mt-16 flex flex-col  items-center gap-10 w-4/5 mx-auto">
 					{filterOrders(orders).map((order) => (
-						<>
-							<OrderCard
-								key={order.id}
-								order={order}
-								costumer={
-									costumers.find(
-										(customer) => customer.id === order.customerId
-									)!
-								}
-							/>
-						</>
+						<OrderCard
+							key={order.id}
+							order={order}
+							costumer={
+								costumers.find((customer) => customer.id === order.customerId)!
+							}
+						/>
 					))}
 				</div>
 			</div>

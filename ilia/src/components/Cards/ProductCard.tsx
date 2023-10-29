@@ -24,7 +24,7 @@ function ProductCard(props: ProductCardProps) {
 					</div>
 				</div>
 				<div className="px-5 pb-5">
-					<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white overflow-hidden">
+					<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white overflow-hidden max-h-7">
 						{product.title}
 					</h5>
 					<div className="flex items-center mt-2.5 mb-5">

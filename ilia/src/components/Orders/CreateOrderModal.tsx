@@ -14,6 +14,7 @@ import CartItemLabel from "../Cart/CartItemLabel";
 import { Costumer } from "@/models/costumer";
 import Toast from "../Toast/Toast";
 import { OrderContext } from "@/contexts/orderContext";
+import Link from "next/link";
 
 type CreateOrderModalProps = {
 	isOpen: boolean;
@@ -56,9 +57,16 @@ function CreateOrderModal({
 					<ModalCloseButton />
 					<ModalBody w={1200} className="flex flex-col items-center ">
 						<div className="flex flex-col max-h-80">
-							<label className="font-bold text-sm py-3">Cart Itens:</label>
+							<label className="font-bold text-sm py-3">Cart Items:</label>
 							{isCartEmpty ? (
-								<span>Cart Empty</span>
+								<div className="flex justify-center gap-5">
+									<span>Cart Empty</span>
+									<Link href={"/products"}>
+										<span className="font-bold hover:cursor-pointer text-blue-700">
+											Click here to see products
+										</span>
+									</Link>
+								</div>
 							) : (
 								<div className="p-5 flex flex-col gap-5 overflow-scroll overflow-x-hidden ">
 									{cartItems.map((item) => (

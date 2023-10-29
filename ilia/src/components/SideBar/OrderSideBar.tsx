@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeIcon, PencilIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/outline";
 import SideBarItem from "./SideBarItem";
 type OrderSideBarProps = {
 	onCreateCostumerClick?: () => void;
@@ -12,11 +12,11 @@ function OrderSideBar({ onCreateCostumerClick }: OrderSideBarProps) {
 					<span className="text-white text-xl font-medium">Menu</span>
 				</div>
 				<ul className="flex flex-col text-white space-y-2 text-sm mt-4">
-					<SideBarItem
+					{/* <SideBarItem
 						route={"/orders"}
 						icon={<HomeIcon className="h-5 w-5 text-gray-100" />}
 						itemTitle={"Orders"}
-					/>
+					/> */}
 					<SideBarItem
 						icon={<PencilIcon className="h-5 w-5 text-gray-100" />}
 						itemTitle={"Create Order"}
