@@ -27,7 +27,7 @@ function OrderItemsTable({ products }: OrderItemsTableProps) {
 			</thead>
 			<tbody>
 				{products.map((product) => (
-					<OrderItem product={product} />
+					<OrderItem product={product} key={product.id} />
 				))}
 			</tbody>
 		</table>

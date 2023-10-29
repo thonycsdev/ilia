@@ -42,7 +42,7 @@ function OrderDetailsModal({ isOpen, onClose, order }: OrderDetailsModalProps) {
 										{formatDateToBrazilFormat(new Date(order.createdAt))}
 									</div>
 								</label>
-								<label className="flex gap-5">
+								<label className="flex gap-5" data-testid="order-sum-price">
 									Order Value:
 									<div className="text-xl text-cyan-600">
 										{formatCurrency(sumTotalCartPrice(order.products))}

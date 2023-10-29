@@ -19,7 +19,9 @@ function CreateFullCostumerMock(
 		.map((value) => ({ ...value, id: value.id++ }));
 }
 
-function Create2OrdersMockWithProductsMocked(product: Product[]): Order[] {
+export function Create2OrdersMockWithProductsMocked(
+	product: Product[]
+): Order[] {
 	return Array(2)
 		.fill({ id: 0, products: product })
 		.map((order) => ({ ...order, id: order.id++ }));
