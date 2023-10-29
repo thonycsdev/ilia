@@ -1,18 +1,24 @@
 import { formatCurrency } from "@/functions/formatCurrency";
 import sumTotalCartPrice from "@/functions/sumTotalCartPrice";
 import { Product } from "@/models/product";
-import React from "react";
+import React, { useState } from "react";
+import QuickCartModal from "./QuickCartModal";
 
-type CartQuickAcessIconProps = {
+type CartQuickAccessIconProps = {
 	cartItems: Product[];
 };
 
-function CartQuickAcessIcon({ cartItems }: CartQuickAcessIconProps) {
+function CartQuickAccessIcon({ cartItems }: CartQuickAccessIconProps) {
+	const [isOpen, setIsOpen] = useState(false);
 	const totalCartCost = sumTotalCartPrice(cartItems);
 	return (
 		<>
-			<div className="flex flex-col gap-10 pt-10">
-				<div className="p-2 px-10 bg-cyan-600 text-white rounded-md font-bold text-lg flex gap-4 justify-center">
+			<QuickCartModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+			<div className="flex flex-col gap-10 pt-10 ">
+				<div
+					className="p-2 px-10 bg-cyan-600 text-white rounded-md font-bold text-lg flex gap-4 justify-center hover:cursor-pointer hover:bg-cyan-500"
+					onClick={() => setIsOpen(true)}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -54,4 +60,4 @@ function CartQuickAcessIcon({ cartItems }: CartQuickAcessIconProps) {
 	);
 }
 
-export default CartQuickAcessIcon;
+export default CartQuickAccessIcon;

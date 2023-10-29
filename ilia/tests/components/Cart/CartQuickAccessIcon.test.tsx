@@ -1,4 +1,4 @@
-import CartQuickAcessIcon from "@/components/Cart/CartQuickAcessIcon";
+import CartQuickAccessIcon from "@/components/Cart/CartQuickAcessIcon";
 import { render, screen } from "@testing-library/react";
 import { Create2ProductsMocks } from "../../mocks/mockCostumers";
 
@@ -7,7 +7,7 @@ describe("Cart Quick Access Icon", () => {
 	const cartItemsNumber = 2;
 	beforeEach(() => {
 		const cartItems = Create2ProductsMocks();
-		render(<CartQuickAcessIcon cartItems={cartItems} />);
+		render(<CartQuickAccessIcon cartItems={cartItems} />);
 	});
 
 	test("Should return the total amount based on cartItems mock 4", async () => {
