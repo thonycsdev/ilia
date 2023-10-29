@@ -2,7 +2,7 @@ import { Product } from "@/models/product";
 import { ReactNode, createContext, useState } from "react";
 
 export type CartContextProps = {
-	cartItens: Product[];
+	cartItems: Product[];
 	addProductToCart: (product: Product) => void;
 	removeProductFromCartByProductId: (productId: number) => void;
 	cartCleanUp: () => void;
@@ -17,22 +17,22 @@ type CartContextProviderProps = {
 };
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
-	const [cartItens, setCartItens] = useState<Product[]>([]);
+	const [cartItems, setCartItems] = useState<Product[]>([]);
 
 	const addProductToCart = (product: Product) => {
-		setCartItens((old) => [...old, product]);
+		setCartItems((old) => [...old, product]);
 	};
 	const removeProductFromCartByProductId = (productId: number) => {
-		setCartItens((old) => old.filter((product) => product.id != productId));
+		setCartItems((old) => old.filter((product) => product.id != productId));
 	};
 	const cartCleanUp = () => {
-		setCartItens([]);
+		setCartItems([]);
 	};
 
 	return (
 		<CartContext.Provider
 			value={{
-				cartItens,
+				cartItems: cartItems,
 				addProductToCart,
 				removeProductFromCartByProductId,
 				cartCleanUp,

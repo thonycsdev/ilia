@@ -1,7 +1,7 @@
 import { Product } from "@/models/product";
 
-function sumTotalCartPrice(cartItens: Product[]) {
-	const totalCartCost = cartItens.reduce((accumulator, product) => {
+function sumTotalCartPrice(cartItems: Product[]) {
+	const totalCartCost = cartItems.reduce((accumulator, product) => {
 		return accumulator + product.price;
 	}, 0);
 

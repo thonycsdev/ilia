@@ -4,11 +4,11 @@ import { Product } from "@/models/product";
 import React from "react";
 
 type CartQuickAcessIconProps = {
-	cartItens: Product[];
+	cartItems: Product[];
 };
 
-function CartQuickAcessIcon({ cartItens }: CartQuickAcessIconProps) {
-	const totalCartCost = sumTotalCartPrice(cartItens);
+function CartQuickAcessIcon({ cartItems }: CartQuickAcessIconProps) {
+	const totalCartCost = sumTotalCartPrice(cartItems);
 	return (
 		<>
 			<div className="flex flex-col gap-10 pt-10">
@@ -27,7 +27,7 @@ function CartQuickAcessIcon({ cartItens }: CartQuickAcessIconProps) {
 							d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
 						/>
 					</svg>
-					<div>Cart: {cartItens.length}</div>
+					<div>Cart: {cartItems.length}</div>
 				</div>
 				<div className="p-2 px-10 bg-cyan-600 text-white rounded-md font-bold text-lg flex gap-4">
 					<svg

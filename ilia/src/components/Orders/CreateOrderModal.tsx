@@ -26,7 +26,7 @@ function CreateOrderModal({
 	onClose,
 	costumers,
 }: CreateOrderModalProps) {
-	const { cartItens, cartCleanUp } = useContext(CartContext);
+	const { cartItems: cartItems, cartCleanUp } = useContext(CartContext);
 	const { addOrder } = useContext(OrderContext);
 	const { register, handleSubmit } = useForm();
 	const handleSubmitForm = async (data: FieldValues) => {
@@ -34,7 +34,7 @@ function CreateOrderModal({
 			await addOrder({
 				customerId: data.customerId,
 				createdAt: new Date(),
-				products: cartItens,
+				products: cartItems,
 			});
 			cartCleanUp();
 			onClose();
@@ -44,6 +44,7 @@ function CreateOrderModal({
 			console.log(error);
 		}
 	};
+	const isCartEmpty = cartItems.length <= 0;
 	return (
 		<>
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -56,11 +57,11 @@ function CreateOrderModal({
 					<ModalBody w={1200} className="flex flex-col items-center ">
 						<div className="flex flex-col max-h-80">
 							<label className="font-bold text-sm py-3">Cart Itens:</label>
-							{cartItens.length <= 0 ? (
+							{isCartEmpty ? (
 								<span>Cart Empty</span>
 							) : (
 								<div className="p-5 flex flex-col gap-5 overflow-scroll overflow-x-hidden ">
-									{cartItens.map((item) => (
+									{cartItems.map((item) => (
 										<CartItemLabel product={item} />
 									))}
 								</div>
@@ -87,7 +88,12 @@ function CreateOrderModal({
 							</div>
 						</form>
 						<div className="flex justify-center gap-20">
-							<StandardButton type="submit" form="form" aria-label="create-btn">
+							<StandardButton
+								disabled={isCartEmpty}
+								type="submit"
+								form="form"
+								aria-label="create-btn"
+							>
 								Create
 							</StandardButton>
 							<StandardButton aria-label="close-btn" onClick={onClose}>

@@ -4,9 +4,9 @@ import { Product } from "@/models/product";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 describe("Product Card ", () => {
-	const cartItens: Product[] = [];
+	const cartItems: Product[] = [];
 	const addProductToCart = jest.fn(() => {
-		cartItens.push({} as Product);
+		cartItems.push({} as Product);
 	});
 	const product: Product = {
 		id: 1,
@@ -24,7 +24,7 @@ describe("Product Card ", () => {
 	beforeEach(() => {
 		render(
 			<CartContext.Provider
-				value={{ ...cartCtxProps, addProductToCart, cartItens: [] }}
+				value={{ ...cartCtxProps, addProductToCart, cartItems: [] }}
 			>
 				<ProductCard product={product} />
 			</CartContext.Provider>
@@ -49,8 +49,8 @@ describe("Product Card ", () => {
 		const button = screen.getByRole("button", {
 			name: /add to cart/i,
 		});
-		const oldLenght = cartItens.length;
+		const oldLenght = cartItems.length;
 		await userEvent.click(button);
-		expect(cartItens).toHaveLength(oldLenght + 1);
+		expect(cartItems).toHaveLength(oldLenght + 1);
 	});
 });

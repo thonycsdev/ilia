@@ -13,7 +13,7 @@ import React, { useContext, useState } from "react";
 function Products({ costumers }: { costumers: Costumer[] }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const { products } = useContext(ProductContext);
-	const { cartItens } = useContext(CartContext);
+	const { cartItems: cartItems } = useContext(CartContext);
 	const [searchTerm, setSearchTerm] = useState("");
 
 	const filterProducts = (products: Product[]) => {
@@ -31,11 +31,11 @@ function Products({ costumers }: { costumers: Costumer[] }) {
 				onClose={() => setIsOpen(false)}
 			/>
 			<div className="flex gap-10 ml-10">
-				<CartQuickAcessIcon cartItens={cartItens} />
+				<CartQuickAcessIcon cartItems={cartItems} />
 				<div className="pt-10 font-bold text-lg">
 					<StandardButton
 						onClick={() => setIsOpen(true)}
-						disabled={!(cartItens.length > 0)}
+						disabled={!(cartItems.length > 0)}
 					>
 						Check out
 					</StandardButton>
