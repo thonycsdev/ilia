@@ -3,7 +3,7 @@ import orderRepository from "@/repositories/orderRepository";
 import { useRouter } from "next/router";
 import { ReactNode, createContext } from "react";
 
-type OrderContextProps = {
+export type OrderContextProps = {
 	getAllOrders: () => void;
 	getSingleOrder: (id: number) => Promise<Order>;
 	updateOrder: (id: number) => void;

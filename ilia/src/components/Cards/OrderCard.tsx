@@ -15,12 +15,12 @@ function OrderCard({ order }: OrderCardProps) {
 	const totalProductsPrice = sumTotalCartPrice(order.products);
 	const [isOpenModal, setIsOpenModal] = useState(false);
 	const handleDeleteClick = async () => {
+		const { successToast, failToast } = Toast();
 		try {
 			await deleteOrder(order.id!);
-			const { successToast } = Toast();
 			successToast("Order deleted successfully");
 		} catch (error) {
-			console.log(error);
+			failToast("Error deleting order");
 		}
 	};
 	return (
@@ -63,6 +63,7 @@ function OrderCard({ order }: OrderCardProps) {
 					<div className="flex gap-3">
 						<div
 							className="hover:scale-125 transition-all duration-150 hover:text-cyan-400"
+							aria-label="eye-details"
 							onClick={() => setIsOpenModal(true)}
 						>
 							<svg
@@ -87,6 +88,7 @@ function OrderCard({ order }: OrderCardProps) {
 						</div>
 						<div
 							className="hover:scale-125 transition-all duration-150 hover:text-cyan-400"
+							aria-label="delete-icon"
 							onClick={handleDeleteClick}
 						>
 							<svg
