@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import StandardButton from "../Buttons/StandardButton";
-import { Order } from "@/models/costumer";
+import { Costumer, Order } from "@/models/costumer";
 import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import sumTotalCartPrice from "@/functions/sumTotalCartPrice";
 import { formatCurrency } from "@/functions/formatCurrency";
@@ -17,9 +17,15 @@ type OrderDetailsModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
 	order: Order;
+	costumer: Costumer;
 };
 
-function OrderDetailsModal({ isOpen, onClose, order }: OrderDetailsModalProps) {
+function OrderDetailsModal({
+	isOpen,
+	onClose,
+	order,
+	costumer,
+}: OrderDetailsModalProps) {
 	return (
 		<>
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -52,11 +58,11 @@ function OrderDetailsModal({ isOpen, onClose, order }: OrderDetailsModalProps) {
 							<div className="flex flex-col">
 								<label className="flex gap-5">
 									Costumer name:
-									<div>{order.customer?.name}</div>
+									<div>{costumer.name}</div>
 								</label>
 								<label className="flex gap-5">
 									Costumer email:
-									<div>{order.customer?.email}</div>
+									<div>{costumer.email}</div>
 								</label>
 							</div>
 						</div>
