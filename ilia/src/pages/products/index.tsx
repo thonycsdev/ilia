@@ -1,4 +1,4 @@
-import StandardButton from "@/components/Buttons/StantardButton";
+import StandardButton from "@/components/Buttons/StandardButton";
 import ProductCard from "@/components/Cards/ProductCard";
 import CartQuickAcessIcon from "@/components/Cart/CartQuickAcessIcon";
 import Filter from "@/components/Filter/Filter";

@@ -1,6 +1,6 @@
 import { Product } from "@/models/product";
 import React, { useContext } from "react";
-import StandardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StandardButton";
 import { CartContext } from "@/contexts/cartContext";
 import { formatCurrency } from "@/functions/formatCurrency";
 

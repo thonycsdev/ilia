@@ -7,7 +7,7 @@ import {
 	ModalBody,
 } from "@chakra-ui/react";
 import React from "react";
-import StandardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StandardButton";
 import { Order } from "@/models/costumer";
 import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import sumTotalCartPrice from "@/functions/sumTotalCartPrice";

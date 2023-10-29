@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import StandardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StandardButton";
 
 type FilterProps = {
 	onUserTyping: (searchTerm: string) => void;

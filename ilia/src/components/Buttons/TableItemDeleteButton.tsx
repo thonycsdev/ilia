@@ -1,5 +1,5 @@
 import React from "react";
-import StandardButton from "./StantardButton";
+import StandardButton from "./StandardButton";
 import Swal from "sweetalert2";
 
 type TableItemDeleteButtonProps = {

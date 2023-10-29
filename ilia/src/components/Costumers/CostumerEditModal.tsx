@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { FieldValues, useForm } from "react-hook-form";
 import Toast from "../Toast/Toast";
-import StandardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StandardButton";
 
 type CostumerEditModalProps = {
 	isOpen: boolean;

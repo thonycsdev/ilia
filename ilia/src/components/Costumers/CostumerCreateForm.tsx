@@ -7,7 +7,7 @@ import {
 	ModalBody,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import StandardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StandardButton";
 import { FieldValues, useForm } from "react-hook-form";
 import { Costumer } from "@/models/costumer";
 import { CostumerContext } from "@/contexts/costumerContext";

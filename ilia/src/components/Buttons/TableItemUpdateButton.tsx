@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StandardButton from "./StantardButton";
+import StandardButton from "./StandardButton";
 import { Costumer } from "@/models/costumer";
 import { CostumerEditModal } from "../Costumers/CostumerEditModal";
 
