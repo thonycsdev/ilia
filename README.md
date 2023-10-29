@@ -7,6 +7,7 @@ With this project, you can create customers and orders. Customers can have multi
 ## Features
 
 - **Customers:**
+
   - Create a new customer.
   - Edit the information of an existing customer.
   - Remove a customer.
@@ -14,7 +15,6 @@ With this project, you can create customers and orders. Customers can have multi
 - **Orders:**
   - Create a new order, associating it with an existing customer.
   - Specify the products in the order.
-  
 - **Products:**
   - View the list of available products in the "Products" tab.
 
@@ -22,27 +22,27 @@ With this project, you can create customers and orders. Customers can have multi
 
 After creating orders and associating them with customers, you can return to the home page and click on the customer's card. There, you will see the list of orders assigned to that customer.
 
-
-
 ## Configuring the API in ASP.NET Core
+
+### This API Requires Dotnet Version 7 Only
+### https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-2204
 
 1. Navigate to the directory of the API:
    ```bash
    cd ilia-api
    ```
+   1.5 Navigate to the directory of the API:
+   ```bash
+   cd API
+   ```
 2. Restore the project dependencies:
    ```bash
    dotnet restore
    ```
-3. Apply database migrations (if applicable):
-   ```bash
-   dotnet ef database update
-   ```
-4. Start the API server:
+3. Start the API server:
    ```bash
    dotnet run
    ```
-
 
 ## Configuring the Next.js Project
 
