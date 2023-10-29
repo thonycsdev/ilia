@@ -19,7 +19,10 @@ function Orders({
 
 	const filterOrders = (products: Order[]) => {
 		return products.filter((order) => {
-			const name = order.customer!.name.toLocaleLowerCase();
+			const costumer = costumers.find(
+				(costumer) => costumer.id === order.customerId
+			);
+			const name = costumer!.name.toLocaleLowerCase();
 			return name.includes(searchTerm.toLocaleLowerCase());
 		});
 	};
@@ -37,7 +40,14 @@ function Orders({
 				<div className="mt-16 flex flex-col  items-center gap-10 w-4/5 mx-auto">
 					{filterOrders(orders).map((order) => (
 						<>
-							<OrderCard order={order} />
+							<OrderCard
+								order={order}
+								costumer={
+									costumers.find(
+										(customer) => customer.id === order.customerId
+									)!
+								}
+							/>
 						</>
 					))}
 				</div>

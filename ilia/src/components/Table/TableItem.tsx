@@ -12,7 +12,7 @@ type TableItemProps = {
 function TableItem({ costumer }: TableItemProps) {
 	const { deleteCostumer } = useContext(CostumerContext);
 	const handleDelete = async () => {
-		await deleteCostumer(costumer.id);
+		await deleteCostumer(costumer.id!);
 	};
 	return (
 		<>
@@ -21,10 +21,10 @@ function TableItem({ costumer }: TableItemProps) {
 					{costumer.name}
 				</td>
 				<td className="px-6 py-4 text-sm text-slate-900">
-					{costumer.orders.length}
+					{costumer.orders!.length}
 				</td>
 				<td className="px-6 py-4 text-sm text-slate-900">
-					{formatDateToBrazilFormat(new Date(costumer.createdAt))}
+					{formatDateToBrazilFormat(costumer.createdAt!)}
 				</td>
 				<td className="text-sm text-slate-900 flex gap-11 mt-3">
 					<TableItemDeleteButton onDelete={handleDelete} />

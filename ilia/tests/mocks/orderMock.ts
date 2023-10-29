@@ -2,15 +2,8 @@ import { Order } from "@/models/costumer";
 
 export const orderMock: Order = {
 	id: 101,
-	createdAt: "2023-10-27T15:30:00Z",
+	createdAt: new Date(),
 	customerId: 1,
-	customer: {
-		id: 1,
-		createdAt: "2023-10-28T10:00:00Z",
-		name: "John Doe",
-		email: "johndoe@example.com",
-		orders: [],
-	},
 	products: [
 		{
 			id: 201,

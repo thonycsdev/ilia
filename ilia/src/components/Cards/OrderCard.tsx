@@ -1,4 +1,4 @@
-import { Order } from "@/models/costumer";
+import { Costumer, Order } from "@/models/costumer";
 import React, { useContext, useState } from "react";
 import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import { OrderContext } from "@/contexts/orderContext";
@@ -9,8 +9,9 @@ import OrderDetailsModal from "../Orders/OrderDetailsModal";
 
 type OrderCardProps = {
 	order: Order;
+	costumer: Costumer;
 };
-function OrderCard({ order }: OrderCardProps) {
+function OrderCard({ order, costumer }: OrderCardProps) {
 	const { deleteOrder } = useContext(OrderContext);
 	const totalProductsPrice = sumTotalCartPrice(order.products);
 	const [isOpenModal, setIsOpenModal] = useState(false);
@@ -26,6 +27,7 @@ function OrderCard({ order }: OrderCardProps) {
 	return (
 		<>
 			<OrderDetailsModal
+				costumer={costumer}
 				isOpen={isOpenModal}
 				onClose={() => setIsOpenModal(false)}
 				order={order}
@@ -54,7 +56,7 @@ function OrderCard({ order }: OrderCardProps) {
 						</thead>
 						<tbody>
 							<tr>
-								<td className="px-6 ">{order.customer?.name}</td>
+								<td className="px-6 ">{costumer.name}</td>
 								<td className="px-6 ">{order.products.length}</td>
 								<td className="px-6 ">{formatCurrency(totalProductsPrice)}</td>
 							</tr>
