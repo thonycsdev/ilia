@@ -14,6 +14,8 @@ function CreateFullCostumerMock(
 	return Array(amountInTheArray)
 		.fill({
 			id: 0,
+
+			createdAt: new Date(),
 			orders: orders,
 		})
 		.map((value) => ({ ...value, id: value.id++ }));

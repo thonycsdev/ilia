@@ -3,6 +3,7 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import { orderMock } from "../../mocks/orderMock";
 import userEvent from "@testing-library/user-event";
 import { OrderContext, OrderContextProps } from "@/contexts/orderContext";
+import { costumer } from "../../mocks/costumerMock";
 
 const orderCtxValueMock: OrderContextProps = {} as OrderContextProps;
 
@@ -13,7 +14,7 @@ describe("Order Card Details", () => {
 			<OrderContext.Provider
 				value={{ ...orderCtxValueMock, deleteOrder: deleteOrderMockFunction }}
 			>
-				<OrderCard order={orderMock} />
+				<OrderCard order={orderMock} costumer={costumer} />
 			</OrderContext.Provider>
 		);
 	});
@@ -50,7 +51,7 @@ describe("Order Card Details", () => {
 					deleteOrder: deleteOrderMockFunctionFailed,
 				}}
 			>
-				<OrderCard order={orderMock} />
+				<OrderCard order={orderMock} costumer={costumer} />
 			</OrderContext.Provider>
 		);
 

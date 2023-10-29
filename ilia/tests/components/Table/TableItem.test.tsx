@@ -7,7 +7,7 @@ describe("Table Item Tests", () => {
 	costumer.name = "Anthony";
 	costumer.orders = [];
 	costumer.email = "a@a";
-	costumer.createdAt = "11/15/1998";
+	costumer.createdAt = new Date("11/15/2023");
 	render(
 		<table>
 			<tbody>
@@ -25,7 +25,7 @@ describe("Table Item Tests", () => {
 
 		//Mes e dia estao alterados pois no table item a data eh formatada para pt-br
 		const createdAt = screen.getByRole("cell", {
-			name: "15/11/1998",
+			name: "15/11/2023",
 		});
 
 		expect(name).toBeInTheDocument();

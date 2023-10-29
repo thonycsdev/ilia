@@ -2,18 +2,12 @@ import OrderDetailsModal from "@/components/Orders/OrderDetailsModal";
 import { render, screen } from "@testing-library/react";
 import { Order } from "@/models/costumer";
 import userEvent from "@testing-library/user-event";
+import { costumer } from "../../mocks/costumerMock";
 
 const orderMock: Order = {
 	id: 101,
-	createdAt: "2023-10-27T15:30:00Z",
+	createdAt: new Date("11/15/2023"),
 	customerId: 1,
-	customer: {
-		id: 1,
-		createdAt: "2023-10-28T10:00:00Z",
-		name: "John Doe",
-		email: "johndoe@example.com",
-		orders: [],
-	},
 	products: [
 		{
 			id: 201,
@@ -35,6 +29,7 @@ describe("Order Details Modal", () => {
 	beforeEach(() => {
 		render(
 			<OrderDetailsModal
+				costumer={costumer}
 				isOpen={true}
 				onClose={onCloseFunction}
 				order={orderMock}
@@ -44,7 +39,7 @@ describe("Order Details Modal", () => {
 
 	test("Should have to correct order details", () => {
 		const orderId = screen.getByText("101");
-		const orderDate = screen.getByText("27/10/2023");
+		const orderDate = screen.getByText("15/11/2023");
 		const orderTotalPrice = screen.getByTestId("order-sum-price");
 		expect(orderId).toBeInTheDocument();
 		expect(orderDate).toBeInTheDocument();
