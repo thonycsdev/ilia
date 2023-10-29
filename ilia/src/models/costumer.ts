@@ -1,17 +1,19 @@
-import { Product } from "./product";
+import { z } from "zod";
+import { OrderSchema } from "./order";
 
-export type Costumer = {
-	id: number;
-	createdAt: string | Date;
-	name: string;
-	email: string;
-	orders: Order[];
-};
+export const CostumerSchema = z
+	.object({
+		id: z.number().nullable(),
+		createdAt: z.date(),
+		name: z.string().trim().min(4, {
+			message: "The name should have at least 4 characters",
+		}),
+		email: z.string().email().trim().toLowerCase(),
+	})
+	.extend({ orders: OrderSchema.array() });
 
-export type Order = {
-	id?: number;
-	createdAt: string | Date;
-	customerId: number;
-	customer?: Costumer;
-	products: Product[];
-};
+export type Costumer = z.infer<typeof CostumerSchema>;
+
+export type Order = z.infer<typeof OrderSchema>;
+
+// type costumerTest = z.infer<typeof CostumerSchema>

@@ -1,4 +1,4 @@
-import QuickAccessItem from "@/components/QuickAcess/QuickAccessItem";
+import QuickAccessItem from "@/components/QuickAccess/QuickAccessItem";
 import { render, screen } from "@testing-library/react";
 
 describe("Quick Access Item Tests", () => {

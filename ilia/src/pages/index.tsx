@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer/Footer";
-import QuickAccess from "@/components/QuickAcess/QuickAccess";
+import QuickAccess from "@/components/QuickAccess/QuickAccess";
 import { Costumer, Order } from "@/models/costumer";
 import costumerRepository from "@/repositories/customerRepository";
 import orderRepository from "@/repositories/orderRepository";
@@ -44,7 +44,7 @@ export default function Home({ response }: HomeProps) {
 						<div className="relative">
 							<img
 								src="https://ilia.digital/wp-content/uploads/2022/11/Logo.png"
-								alt="themeptation"
+								alt="ilia-logo"
 								className="relative z-10 transform rotate-6"
 							/>
 							<div className="absolute -top-10 -left-24 w-full h-full bg-cyan-900 transform -rotate-6"></div>
@@ -54,8 +54,8 @@ export default function Home({ response }: HomeProps) {
 			</div>
 
 			<QuickAccess
-				costumersLenght={response.costumers.length}
-				ordersLenght={response.orders.length}
+				costumersLength={response.costumers.length}
+				ordersLength={response.orders.length}
 			/>
 			<Footer />
 		</>

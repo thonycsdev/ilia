@@ -15,13 +15,19 @@ type NavBarProps = {
 function NavBar(props: NavBarProps) {
 	const { children } = props;
 	const router = useRouter();
-	// console.log(router.pathname);
 	return (
 		<>
-			<nav className="flex items-center justify-between p-6 container mx-auto">
+			<nav className="flex items-center justify-between p-6 bg-gradient-to-l from-cyan-200 to-cyan-600">
 				<Link href="/" className="relative text-2xl font-extrabold">
-					<span className="absolute w-10 h-2 bg-cyan-500 bottom-1 right-0"></span>
-					<span className="relative z-10">Ilia Desafio V2</span>
+					<div className="flex items-center gap-5">
+						<img
+							src="https://ilia.digital/wp-content/uploads/2022/11/Logo.png"
+							className="w-20 h-20"
+						/>
+						<span className="relative z-10 text-white font-extrabold font-sans">
+							Challenge V2
+						</span>
+					</div>
 				</Link>
 
 				<div className="text-base text-gray-900 hidden lg:flex">
@@ -29,7 +35,7 @@ function NavBar(props: NavBarProps) {
 						href="/"
 						className={`block font-bold mt-4 lg:inline-block ${
 							router.pathname === routesInApplication.home
-								? "text-cyan-600"
+								? "text-cyan-50"
 								: "text-gray-700"
 						} lg:mt-0 mr-10`}
 					>
@@ -39,7 +45,7 @@ function NavBar(props: NavBarProps) {
 						href="/costumers"
 						className={`block font-bold mt-4 lg:inline-block ${
 							router.pathname === routesInApplication.costumers
-								? "text-cyan-600"
+								? "text-cyan-50"
 								: "text-gray-700"
 						} lg:mt-0 mr-10`}
 					>
@@ -49,7 +55,7 @@ function NavBar(props: NavBarProps) {
 						href={"/products"}
 						className={`block font-bold mt-4 lg:inline-block ${
 							router.pathname === routesInApplication.products
-								? "text-cyan-600"
+								? "text-cyan-50"
 								: "text-gray-700"
 						} lg:mt-0 mr-10`}
 					>
@@ -59,7 +65,7 @@ function NavBar(props: NavBarProps) {
 						href={"/orders"}
 						className={`block font-bold mt-4 lg:inline-block ${
 							router.pathname === routesInApplication.orders
-								? "text-cyan-600"
+								? "text-cyan-50"
 								: "text-gray-700"
 						} lg:mt-0 mr-10`}
 					>
@@ -72,7 +78,7 @@ function NavBar(props: NavBarProps) {
 						<button className="font-bold py-2 px-6 text-gray-600 hover:text-gray-700 text-base hidden lg:inline-flex">
 							Sign in
 						</button>
-						<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-900">
+						<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 px-5 py-2 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-500">
 							Sign up
 						</button>
 					</div>
