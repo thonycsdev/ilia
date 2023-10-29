@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import StantardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StantardButton";
 
 type FilterProps = {
 	onUserTyping: (searchTerm: string) => void;
@@ -27,9 +27,9 @@ function Filter({ onUserTyping }: FilterProps) {
 				value={userInput}
 				className="bg-slate-200 w-2/5 h-10 rounded-xl p-3"
 			/>
-			<StantardButton disabled={isDisable} onClick={() => setUserInput("")}>
+			<StandardButton disabled={isDisable} onClick={() => setUserInput("")}>
 				Clear Filter
-			</StantardButton>
+			</StandardButton>
 		</div>
 	);
 }

@@ -7,7 +7,7 @@ import {
 	ModalBody,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import StantardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StantardButton";
 import { FieldValues, useForm } from "react-hook-form";
 import { CartContext } from "@/contexts/cartContext";
 import CartItemLabel from "../Cart/CartItemLabel";
@@ -87,12 +87,12 @@ function CreateOrderModal({
 							</div>
 						</form>
 						<div className="flex justify-center gap-20">
-							<StantardButton type="submit" form="form" aria-label="create-btn">
+							<StandardButton type="submit" form="form" aria-label="create-btn">
 								Create
-							</StantardButton>
-							<StantardButton aria-label="close-btn" onClick={onClose}>
+							</StandardButton>
+							<StandardButton aria-label="close-btn" onClick={onClose}>
 								Close
-							</StantardButton>
+							</StandardButton>
 						</div>
 					</ModalBody>
 				</ModalContent>

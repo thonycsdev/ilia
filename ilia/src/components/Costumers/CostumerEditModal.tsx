@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { FieldValues, useForm } from "react-hook-form";
 import Toast from "../Toast/Toast";
-import StantardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StantardButton";
 
 type CostumerEditModalProps = {
 	isOpen: boolean;
@@ -74,12 +74,12 @@ export function CostumerEditModal(props: CostumerEditModalProps) {
 							</div>
 						</form>
 						<div className="flex justify-center gap-20">
-							<StantardButton type="submit" form="form" aria-label="create-btn">
+							<StandardButton type="submit" form="form" aria-label="create-btn">
 								Update
-							</StantardButton>
-							<StantardButton aria-label="close-btn" onClick={onClose}>
+							</StandardButton>
+							<StandardButton aria-label="close-btn" onClick={onClose}>
 								Close
-							</StantardButton>
+							</StandardButton>
 						</div>
 					</ModalBody>
 				</ModalContent>

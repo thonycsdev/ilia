@@ -1,5 +1,5 @@
 import React from "react";
-import StantardButton from "./StantardButton";
+import StandardButton from "./StantardButton";
 import Swal from "sweetalert2";
 
 type TableItemDeleteButtonProps = {
@@ -28,7 +28,7 @@ function TableItemDeleteButton({
 		}
 	};
 	return (
-		<StantardButton
+		<StandardButton
 			onClick={handleUserClickedOnDelete}
 			className={
 				classname
@@ -50,7 +50,7 @@ function TableItemDeleteButton({
 					d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 				/>
 			</svg>
-		</StantardButton>
+		</StandardButton>
 	);
 }
 

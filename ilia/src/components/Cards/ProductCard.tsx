@@ -1,6 +1,6 @@
 import { Product } from "@/models/product";
 import React, { useContext } from "react";
-import StantardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StantardButton";
 import { CartContext } from "@/contexts/cartContext";
 import { formatCurrency } from "@/functions/formatCurrency";
 
@@ -36,9 +36,9 @@ function ProductCard(props: ProductCardProps) {
 						<span className="text-3xl font-bold text-gray-900 dark:text-white">
 							{formatCurrency(product.price)}
 						</span>
-						<StantardButton onClick={() => addProductToCart(product)}>
+						<StandardButton onClick={() => addProductToCart(product)}>
 							Add to Cart
-						</StantardButton>
+						</StandardButton>
 					</div>
 				</div>
 			</div>

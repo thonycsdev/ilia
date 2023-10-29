@@ -7,7 +7,7 @@ import {
 	ModalBody,
 } from "@chakra-ui/react";
 import React from "react";
-import StantardButton from "../Buttons/StantardButton";
+import StandardButton from "../Buttons/StantardButton";
 import { Order } from "@/models/costumer";
 import { formatDateToBrazilFormat } from "@/functions/formatDate";
 import sumTotalCartPrice from "@/functions/sumTotalCartPrice";
@@ -63,15 +63,15 @@ function OrderDetailsModal({ isOpen, onClose, order }: OrderDetailsModalProps) {
 						<div className="flex flex-col h-auto">
 							<div className="p-5">
 								<label className="text-xl font-bold text-cyan-700">
-									Order Itens
+									Order Items
 								</label>
 								<OrderItemsTable products={order.products} />
 							</div>
 						</div>
 						<div className="flex justify-center gap-20">
-							<StantardButton aria-label="close-btn" onClick={onClose}>
+							<StandardButton aria-label="close-btn" onClick={onClose}>
 								Close
-							</StantardButton>
+							</StandardButton>
 						</div>
 					</ModalBody>
 				</ModalContent>

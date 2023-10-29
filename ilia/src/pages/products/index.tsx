@@ -1,4 +1,4 @@
-import StantardButton from "@/components/Buttons/StantardButton";
+import StandardButton from "@/components/Buttons/StantardButton";
 import ProductCard from "@/components/Cards/ProductCard";
 import CartQuickAcessIcon from "@/components/Cart/CartQuickAcessIcon";
 import Filter from "@/components/Filter/Filter";
@@ -33,12 +33,12 @@ function Products({ costumers }: { costumers: Costumer[] }) {
 			<div className="flex gap-10 ml-10">
 				<CartQuickAcessIcon cartItens={cartItens} />
 				<div className="pt-10 font-bold text-lg">
-					<StantardButton
+					<StandardButton
 						onClick={() => setIsOpen(true)}
 						disabled={!(cartItens.length > 0)}
 					>
 						Check out
-					</StantardButton>
+					</StandardButton>
 				</div>
 			</div>
 			<Filter onUserTyping={(s) => setSearchTerm(s)} />

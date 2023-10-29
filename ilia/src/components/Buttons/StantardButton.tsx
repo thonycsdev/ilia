@@ -4,7 +4,7 @@ type StandardButtonProps = { children: ReactNode };
 type unionProps = StandardButtonProps &
 	React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-function StantardButton({ children, ...props }: unionProps) {
+function StandardButton({ children, ...props }: unionProps) {
 	const { className } = props;
 	return (
 		<button
@@ -20,4 +20,4 @@ function StantardButton({ children, ...props }: unionProps) {
 	);
 }
 
-export default StantardButton;
+export default StandardButton;
