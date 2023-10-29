@@ -41,6 +41,7 @@ After creating orders and associating them with customers, you can return to the
    ```
 3. Start the API server:
    ```bash
+   dotnet build
    dotnet run
    ```
 
