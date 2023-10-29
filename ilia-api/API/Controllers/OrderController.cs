@@ -35,17 +35,24 @@ namespace ilia_api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<OrderResponse>> DeleteOrder(int id)
+        [HttpGet("/byCostumer")]
+        public async Task<ActionResult<OrderResponse>> GetAllByCostumers(int costumerId, OrderRequest viewModel)
         {
-            await _orderService.DeleteOrder(id);
-            return Ok();
-        }
-        [HttpPut]
-        public async Task<ActionResult<OrderResponse>> GetAll(int id, OrderRequest viewModel)
-        {
-            var result = await _orderService.UpdateOrder(viewModel, id);
+            var result = await _orderService.GetOrdersByCostumerId(costumerId);
             return Ok(result);
         }
+
+        [HttpDelete]
+        public async Task<ActionResult<OrderResponse>> DeleteOrder(int orderId)
+        {
+            await _orderService.DeleteOrder(orderId);
+            return Ok();
+        }
+        // [HttpPut]
+        // public async Task<ActionResult<OrderResponse>> UpdateOrder(int id, OrderRequest viewModel)
+        // {
+        //     var result = await _orderService.UpdateOrder(viewModel, id);
+        //     return Ok(result);
+        // }
     }
 }

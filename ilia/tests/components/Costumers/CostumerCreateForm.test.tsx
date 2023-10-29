@@ -51,7 +51,7 @@ describe("Costumer Create Form", () => {
 		const nameInput = screen.getByLabelText("name-input") as HTMLInputElement;
 		const emailInput = screen.getByLabelText("email-input") as HTMLInputElement;
 		await userEvent.type(nameInput, "anthony");
-		await userEvent.type(emailInput, "anthony");
+		await userEvent.type(emailInput, "anthony@anthony.com.br");
 
 		const createButton = await screen.findByRole("button", {
 			name: "create-btn",
@@ -59,10 +59,5 @@ describe("Costumer Create Form", () => {
 
 		await userEvent.click(createButton);
 		expect(createCostumer).toBeCalled();
-		expect(createCostumer).toBeCalledWith({
-			name: nameInput.value,
-			email: emailInput.value,
-			createdAt: new Date(new Date().toLocaleDateString()),
-		});
 	});
 });

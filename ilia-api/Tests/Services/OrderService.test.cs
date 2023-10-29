@@ -18,6 +18,7 @@ namespace Testes
     public class OrderServiceTests
     {
         public Mock<IOrderRepository> mockRepository;
+        public Mock<IProductRepository> mockProductRepository;
         public IMapper mapper;
         public Fixture fixture = new Fixture();
         public OrderServiceTests()
@@ -39,7 +40,7 @@ namespace Testes
             var request = fixture.Create<OrderRequest>();
             request.CustomerId = 0;
             mockRepository.Setup(x => x.Create(It.IsAny<Order>())).ReturnsAsync(It.IsAny<Order>());
-            var service = new OrderService(mockRepository.Object, mapper);
+            var service = new OrderService(mockRepository.Object, mapper, mockProductRepository.Object);
 
             await Assert.ThrowsAsync<Exception>(async () => await service.CreateOrder(request));
         }
@@ -51,7 +52,7 @@ namespace Testes
             var request = fixture.Create<OrderRequest>();
             var entity = mapper.Map<Order>(request);
             mockRepository.Setup(x => x.Create(entity)).ReturnsAsync(entity);
-            var service = new OrderService(mockRepository.Object, mapper);
+            var service = new OrderService(mockRepository.Object, mapper, mockProductRepository.Object);
 
             var result = await service.CreateOrder(request);
 
@@ -64,7 +65,7 @@ namespace Testes
             var request = fixture.Create<OrderRequest>();
             var entity = mapper.Map<Order>(request);
             mockRepository.Setup(x => x.Create(entity)).ReturnsAsync(entity);
-            var service = new OrderService(mockRepository.Object, mapper);
+            var service = new OrderService(mockRepository.Object, mapper, mockProductRepository.Object);
 
             var result = await service.CreateOrder(request);
             Assert.NotNull(result.CreatedAt);

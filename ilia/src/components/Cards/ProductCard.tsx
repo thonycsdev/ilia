@@ -1,20 +1,48 @@
 import { Product } from "@/models/product";
-import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
+import StandardButton from "../Buttons/StandardButton";
+import { CartContext } from "@/contexts/cartContext";
+import { formatCurrency } from "@/functions/formatCurrency";
 
 type ProductCardProps = {
 	product: Product;
 };
 
 function ProductCard(props: ProductCardProps) {
+	const { addProductToCart } = useContext(CartContext);
 	const { product } = props;
 	return (
-		<div className=" w-96 h-80 flex flex-col bg-slate-100 items-center justify-center gap-7 rounded-md transform duration-150 hover:scale-110 hover:cursor-pointer shadow-2xl">
-			<Image src={product.image} alt={product.title} width={50} height={50} />
-			<div className="text-center">{product.title}</div>
-			<div>R$: {product.price}</div>
-			<div>Stars: {product.rating.rate}</div>
-		</div>
+		<>
+			<div className="max-w-sm h-2/4  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+				<div className="bg-white rounded-lg m-7">
+					<div className="h-96 w-96">
+						<img
+							className="w-5/6 h-5/6 p-8 object-fit"
+							src={product.image}
+							alt="product image"
+						/>
+					</div>
+				</div>
+				<div className="px-5 pb-5">
+					<h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white overflow-hidden">
+						{product.title}
+					</h5>
+					<div className="flex items-center mt-2.5 mb-5">
+						<span className="bg-blue-100 whitespace-break-spaces text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+							{product.rating.rate}
+						</span>
+					</div>
+					<div className="flex items-center justify-between">
+						<span className="text-3xl font-bold text-gray-900 dark:text-white">
+							{formatCurrency(product.price)}
+						</span>
+						<StandardButton onClick={() => addProductToCart(product)}>
+							Add to Cart
+						</StandardButton>
+					</div>
+				</div>
+			</div>
+		</>
 	);
 }
 

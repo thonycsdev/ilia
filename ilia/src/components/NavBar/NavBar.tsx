@@ -1,41 +1,73 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
+
+const routesInApplication = {
+	home: "/",
+	orders: "/orders",
+	products: "/products",
+	costumers: "/costumers",
+};
 
 type NavBarProps = {
 	children: ReactNode;
 };
 function NavBar(props: NavBarProps) {
 	const { children } = props;
+	const router = useRouter();
 	return (
 		<>
-			<nav className="flex items-center justify-between p-6 container mx-auto">
+			<nav className="flex items-center justify-between p-6 bg-gradient-to-l from-cyan-200 to-cyan-600">
 				<Link href="/" className="relative text-2xl font-extrabold">
-					<span className="absolute w-10 h-2 bg-cyan-300 bottom-1 right-0"></span>
-					<span className="relative z-10">Ilia Desafio V2</span>
+					<div className="flex items-center gap-5">
+						<img
+							src="https://ilia.digital/wp-content/uploads/2022/11/Logo.png"
+							className="w-20 h-20"
+						/>
+						<span className="relative z-10 text-white font-extrabold font-sans">
+							Challenge V2
+						</span>
+					</div>
 				</Link>
 
 				<div className="text-base text-gray-900 hidden lg:flex">
 					<Link
 						href="/"
-						className="block font-bold mt-4 lg:inline-block text-cyan-600 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.home
+								? "text-cyan-50"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Home
 					</Link>
 					<Link
 						href="/costumers"
-						className="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.costumers
+								? "text-cyan-50"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Costumers
 					</Link>
 					<Link
 						href={"/products"}
-						className="block font-bold mt-4 lg:inline-block hover:text-gray-700 lg:mt-0 mr-10"
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.products
+								? "text-cyan-50"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						Products
 					</Link>
 					<Link
-						href={"/order"}
-						className="block font-bold hover:text-gray-700 mt-4 lg:inline-block lg:mt-0 mr-10"
+						href={"/orders"}
+						className={`block font-bold mt-4 lg:inline-block ${
+							router.pathname === routesInApplication.orders
+								? "text-cyan-50"
+								: "text-gray-700"
+						} lg:mt-0 mr-10`}
 					>
 						My Orders
 					</Link>

@@ -1,8 +1,9 @@
 import Footer from "@/components/Footer/Footer";
-import QuickAccess from "@/components/QuickAcess/QuickAccess";
+import QuickAccess from "@/components/QuickAccess/QuickAccess";
 import { Costumer, Order } from "@/models/costumer";
 import costumerRepository from "@/repositories/customerRepository";
 import orderRepository from "@/repositories/orderRepository";
+import Link from "next/link";
 import { useEffect } from "react";
 
 type HomeProps = {
@@ -31,33 +32,30 @@ export default function Home({ response }: HomeProps) {
 						</p>
 						<div className="lg:mt-6 max-w-7xl sm:flex mt-0">
 							<div className="sm:mt-0 mt-3">
-								<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 items-center block px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-500">
-									See Products
-								</button>
-							</div>
-							<div className="sm:mt-0 sm:ml-3 mt-3">
-								<button className="items-center block px-10 py-3.5 text-base font-medium text-center text-cyan-500 transition duration-500 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-									Create Order
-								</button>
+								<Link href={"/products"}>
+									<button className="hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 items-center block px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-cyan-900">
+										See Products
+									</button>
+								</Link>
 							</div>
 						</div>
 					</div>
 					<div className="lg:w-5/6 lg:max-w-lg xl:mt-0 w-full mt-12">
 						<div className="relative">
 							<img
-								src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=1999&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								alt="themeptation"
-								className="relative z-10 transform rotate-6 shadow-2xl"
+								src="https://ilia.digital/wp-content/uploads/2022/11/Logo.png"
+								alt="ilia-logo"
+								className="relative z-10 transform rotate-6"
 							/>
-							<div className="absolute -top-10 -left-24 w-full h-full bg-cyan-500 transform -rotate-6"></div>
+							<div className="absolute -top-10 -left-24 w-full h-full bg-cyan-900 transform -rotate-6"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<QuickAccess
-				costumersLenght={response.costumers.length}
-				ordersLenght={response.orders.length}
+				costumersLength={response.costumers.length}
+				ordersLength={response.orders.length}
 			/>
 			<Footer />
 		</>

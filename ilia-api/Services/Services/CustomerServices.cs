@@ -60,7 +60,6 @@ namespace Services.Services
             var entityToUpdate = await _customerRepository.GetSingleOrDefault(x => x.Id == id);
             entityToUpdate.Email = customerRequest.Email;
             entityToUpdate.Name = customerRequest.Name;
-            entityToUpdate.CreatedAt = (DateTime)customerRequest.CreatedAt;
             await _customerRepository.Update(entityToUpdate);
 
             return _mapper.Map<CustomerResponse>(entityToUpdate);

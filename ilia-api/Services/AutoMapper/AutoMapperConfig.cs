@@ -17,6 +17,7 @@ namespace Services.AutoMapper
             CreateMap<Order, OrderResponse>();
             CreateMap<Customer, CustomerResponse>();
             CreateMap<CustomerRequest, Customer>();
+            CreateMap<ProductRequest, Product>();
         }
     }
 }

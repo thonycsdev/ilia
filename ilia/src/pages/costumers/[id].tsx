@@ -1,5 +1,4 @@
 "use client";
-import CostumerProfile from "@/components/Costumers/CostumerProfile";
 import { CostumerContext } from "@/contexts/costumerContext";
 import { Costumer } from "@/models/costumer";
 import { useRouter } from "next/router";
@@ -19,7 +18,7 @@ function SingleCostumer() {
 		handleFetchCostumer();
 	}, [router]);
 	if (!costumer) return <h1>Loading...</h1>;
-	return <CostumerProfile costumer={costumer} />;
+	return <>Estou trabalkhando nisso.</>;
 }
 
 export default SingleCostumer;

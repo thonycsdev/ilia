@@ -47,8 +47,7 @@ namespace Infra.Data.Repositories
         public async Task<T> GetSingleOrDefault(Expression<Func<T, bool>> expression)
         {
             var result = await _dbSet.Where(expression).FirstOrDefaultAsync();
-            if (result is null)
-                throw new Exception();
+
             return result;
         }
 
