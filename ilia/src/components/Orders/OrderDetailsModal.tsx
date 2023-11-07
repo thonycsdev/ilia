@@ -36,7 +36,7 @@ function OrderDetailsModal({
 					</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody w={1200} className="flex flex-col items-center ">
-						<div className=" w-full flex justify-between px-20 py-10 text-lg font-bold">
+						<div className="w-auto flex justify-between px-20 py-10 text-lg font-bold gap-24">
 							<div className="flex flex-col">
 								<label className="flex gap-5">
 									Order Number:
@@ -66,7 +66,7 @@ function OrderDetailsModal({
 								</label>
 							</div>
 						</div>
-						<div className="flex flex-col h-auto">
+						<div className="flex flex-col h-auto w-full">
 							<div className="p-5">
 								<label className="text-xl font-bold text-cyan-700">
 									Order Items

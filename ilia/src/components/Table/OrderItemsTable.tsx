@@ -8,10 +8,10 @@ type OrderItemsTableProps = {
 
 function OrderItemsTable({ products }: OrderItemsTableProps) {
 	return (
-		<table className="shadow-md w-3/4 mx-auto mt-14 rounded-md table-auto">
+		<table className="shadow-md overflow-hidden mx-auto mt-5 rounded-md table-auto">
 			<thead className="bg-slate-100 border-b border-slate-200">
 				<tr>
-					<th className=" px-6 font-bold py-3 text-left text-sm text-slate-900 rounded-tl-md">
+					<th className=" px-6 font-bold py-3 text-left text-sm w-1/4 text-slate-900 rounded-tl-md">
 						Name
 					</th>
 					<th className="px-6 py-3 text-left text-sm font-bold text-slate-900">
