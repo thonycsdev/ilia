@@ -19,6 +19,7 @@ export default function Home({ response }: HomeProps) {
 			return;
 		}
 	}, [response]);
+	//O app n foi feito sendo mobile first. Foi idealmente pensado para fullhd ou resulucoes maiores
 	return (
 		<>
 			<div className="2xl:max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-24 2xl:px-12 px-4 py-12 mx-auto">
