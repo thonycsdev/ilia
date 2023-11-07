@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: "./ilia-api/"
+    ports:
+      - "5069:5069"
+  frontend:
+    build: "./ilia"
+    env_file:
+      - ./ilia/.env.local
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
