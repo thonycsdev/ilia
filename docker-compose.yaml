@@ -1,8 +1,13 @@
+version: '3.8'
 services:
   backend:
     build: "./ilia-api/"
     ports:
-      - "5069:5069"
+      - "7289:7289"
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=anthony
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/aspnetapp.pfx
+
   frontend:
     build: "./ilia"
     env_file:
